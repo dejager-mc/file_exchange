@@ -8,5 +8,22 @@
     <artifactId>domain</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>nl.ocwduo.vzub</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
 
 </project>
