@@ -1,12 +1,12 @@
 package nl.ocwduo.vzub.dao;
 
-import nl.ocwduo.vzub.domain.File;
+import nl.ocwduo.vzub.domain.FileSpecs;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
  */
-public interface FileDao extends JpaRepository<File, Long> {
+public interface FileDao extends JpaRepository<FileSpecs, Long> {
 
-    File findById(long id);
+    FileSpecs findById(long id);
 }

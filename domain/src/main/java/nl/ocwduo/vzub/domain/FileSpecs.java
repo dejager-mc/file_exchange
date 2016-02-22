@@ -13,7 +13,7 @@ import javax.persistence.Id;
  * Bestand wordt onder andere, unieke, naam opgeslagen in de file share
  */
 @Entity
-public class File {
+public class FileSpecs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,7 +26,7 @@ public class File {
     private int fileSize;
 //    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand
 
-    protected File() {
+    protected FileSpecs() {
     }
 
     public String getReadableName() {
@@ -55,6 +55,6 @@ public class File {
 
     @Override
     public String toString() {
-        return String.format("File[id=%d, readableName='%s', storageName='%s', fileSize=%d]", id, readableName, storageName, fileSize);
+        return String.format("FileSpecs[id=%d, readableName='%s', storageName='%s', fileSize=%d]", id, readableName, storageName, fileSize);
     }
 }

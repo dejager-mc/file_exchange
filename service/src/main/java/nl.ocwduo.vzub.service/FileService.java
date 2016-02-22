@@ -1,7 +1,7 @@
 package nl.ocwduo.vzub.service;
 
 import nl.ocwduo.vzub.dao.FileDao;
-import nl.ocwduo.vzub.domain.File;
+import nl.ocwduo.vzub.domain.FileSpecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +20,11 @@ public class FileService {
         this.fileDao = fileDao;
     }
 
-    public File findFileById(long id) {
+    public FileSpecs findFileById(long id) {
         return fileDao.findOne(id);
     }
 
-    public List<File> findFilesForUser(String userId) {
+    public List<FileSpecs> findFilesForUser(String userId) {
         return fileDao.findAll();
     }
 }
