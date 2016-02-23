@@ -19,12 +19,10 @@ public class FileSpecs {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    // test
-
     private String readableName;
     private String storageName;
     private int fileSize;
-//    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand
+
 
     protected FileSpecs() {
     }

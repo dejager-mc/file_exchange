@@ -8,5 +8,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface BackofficeFileDao extends JpaRepository<FileSpecs, Long> {
 
-    FileSpecs findById(long id);
 }

@@ -14,4 +14,6 @@ public class CustomerFile {
     private CustomerFileStatus status;
 
     private FileSpecs fileSpecs;
+
+    //    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand
 }
