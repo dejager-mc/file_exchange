@@ -1,5 +1,9 @@
 package nl.ocwduo.gft.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
+
 /**
  * Created by Machiel de Jager on 24-2-2016.
  */
@@ -7,8 +11,11 @@ package nl.ocwduo.gft.config;
 public class config {
 
     @Bean
-    public org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean zakelijkeKlantClient() {
-
+    public JaxWsPortProxyFactoryBean zakelijkeKlantClient() {
+//        JaxWsPortProxyFactoryBean bean = new JaxWsPortProxyFactoryBean();
+//        bean.setServiceInterface();
+//        bean.setWsdlDocumentUrl();
+        return null;
     }
 
 //    <bean id="zakelijkeKlantClient" class="org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean">
