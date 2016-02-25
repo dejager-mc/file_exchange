@@ -19,28 +19,18 @@ public class FileSpecs {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String readableName;
-    private String storageName;
+    private String name;
     private int fileSize;
-
 
     protected FileSpecs() {
     }
 
-    public String getReadableName() {
-        return readableName;
+    public String getName() {
+        return name;
     }
 
-    public void setReadableName(String readableName) {
-        this.readableName = readableName;
-    }
-
-    public String getStorageName() {
-        return storageName;
-    }
-
-    public void setStorageName(String storageName) {
-        this.storageName = storageName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getFileSize() {
@@ -53,6 +43,6 @@ public class FileSpecs {
 
     @Override
     public String toString() {
-        return String.format("FileSpecs[id=%d, readableName='%s', storageName='%s', fileSize=%d]", id, readableName, storageName, fileSize);
+        return String.format("FileSpecs[id=%d, name='%s', fileSize=%d]", id, name, fileSize);
     }
 }
