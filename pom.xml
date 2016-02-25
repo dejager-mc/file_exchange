@@ -12,6 +12,7 @@
         <module>service</module>
         <module>fileshare</module>
         <module>gft-client</module>
+        <module>batch</module>
     </modules>
     <packaging>pom</packaging>
 
