@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories
 @EnableTransactionManagement
-public class ApplicationConfig {
+public class ApplicationContext {
 }
