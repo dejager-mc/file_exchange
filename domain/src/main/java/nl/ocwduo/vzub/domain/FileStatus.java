@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by Max Hunt on 26-2-2016.
+ * Created by Machiel de Jager on 26-2-2016.
  */
 @Entity
 public class FileStatus {

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * Created by Max Hunt on 26-2-2016.
+ * Created by Machiel de Jager on 26-2-2016.
  */
 public class CustomerFileService {
     private CustomerFileDao customerFileDao;

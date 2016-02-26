@@ -5,7 +5,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by Max Hunt on 21-2-2016.
+ * Created by Machiel de Jager on 21-2-2016.
  */
 public class EmailNotification {
     @Id
