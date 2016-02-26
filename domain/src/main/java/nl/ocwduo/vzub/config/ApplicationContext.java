@@ -21,10 +21,10 @@ public class ApplicationContext {
     @Bean
     public DataSource dataSourceVzub() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName();
-        dataSource.setUrl();
-        dataSource.setUsername();
-        dataSource.setPassword();
+//        dataSource.setDriverClassName();
+//        dataSource.setUrl();
+//        dataSource.setUsername();
+//        dataSource.setPassword();
         return dataSource;
     }
 

@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.batch.backofficeFile;
+package nl.ocwduo.vzub.batch.jobs.backofficeFile;
 
 /**
  * Created by Machiel de Jager on 25-2-2016.

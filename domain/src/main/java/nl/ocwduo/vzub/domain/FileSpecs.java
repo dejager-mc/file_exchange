@@ -10,7 +10,7 @@ import javax.persistence.Id;
  */
 
 /*
- * Bestand wordt onder andere, unieke, naam opgeslagen in de file share
+ *
  */
 @Entity
 public class FileSpecs {
