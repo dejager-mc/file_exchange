@@ -1,6 +1,9 @@
 package nl.ocwduo.vzub.domain;
 
-import nl.ocwduo.vzub.domain.enums.CustomerFileStatus;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -10,8 +13,12 @@ import nl.ocwduo.vzub.domain.enums.CustomerFileStatus;
     Een bestand dat van de klant komt
  */
 public class CustomerFile {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private GftKanaal gftKanaal;
-    private CustomerFileStatus status;
+    private List<FileStatus> history;
 
     private FileSpecs fileSpecs;
 

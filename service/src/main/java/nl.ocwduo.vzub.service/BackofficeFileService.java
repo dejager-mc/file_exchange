@@ -1,6 +1,7 @@
 package nl.ocwduo.vzub.service;
 
 import nl.ocwduo.vzub.dao.BackofficeFileDao;
+import nl.ocwduo.vzub.domain.BackofficeFile;
 import nl.ocwduo.vzub.domain.FileSpecs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,11 @@ public class BackofficeFileService {
         this.backofficeFileDao = backofficeFileDao;
     }
 
-    public FileSpecs findFileById(long id) {
+    public BackofficeFile findFileById(Long id) {
         return backofficeFileDao.findOne(id);
     }
 
-    public List<FileSpecs> findFilesForUser(String userId) {
+    public List<BackofficeFile> findFilesForUser(String userId) {
         return backofficeFileDao.findAll();
     }
 }
