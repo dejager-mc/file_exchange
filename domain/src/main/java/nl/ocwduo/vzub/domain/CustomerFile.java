@@ -1,8 +1,6 @@
 package nl.ocwduo.vzub.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -12,14 +10,17 @@ import java.util.List;
 /*
     Een bestand dat van de klant komt
  */
+@Entity
 public class CustomerFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @OneToOne
     private GftKanaal gftKanaal;
+    @OneToMany
     private List<FileStatus> history;
-
+    @OneToOne
     private FileSpecs fileSpecs;
 
     //    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand

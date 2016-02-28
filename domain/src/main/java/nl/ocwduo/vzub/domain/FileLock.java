@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.batch.domain;
+package nl.ocwduo.vzub.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,17 +6,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by Machiel de Jager on 26-2-2016.
+ * Created by Machiel de Jager on 28-2-2016.
  */
 
 /*
-    De schoning job legt in deze tabel een x aantal 'locks' vast, bijvoorbeeld 10.
-    Die job gaat vervolgens de gelockte bestanden schonen
-    De lock van het zojuiste geschoonde bestand wordt verwijdert
+    Sommige processen willen mogelijk een lock leggen op een / een aantal bestanden
+    Dat kan via deze entity.
  */
 @Entity
-public class SchoningJobLocks {
-
+public class FileLock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -24,4 +22,5 @@ public class SchoningJobLocks {
     private Long fileSpecsId;
     private String lockerId;    // welke machine / thread de locks heeft gelegd
     private Long lockMoment;
+    private String lockerProces;
 }

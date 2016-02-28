@@ -1,5 +1,6 @@
 package nl.ocwduo.vzub.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -7,6 +8,7 @@ import javax.persistence.Id;
 /**
  * Created by Machiel de Jager on 21-2-2016.
  */
+@Entity
 public class EmailNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

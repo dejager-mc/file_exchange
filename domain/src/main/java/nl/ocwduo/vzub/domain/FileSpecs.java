@@ -20,7 +20,8 @@ public class FileSpecs {
     private long id;
 
     private String name;
-    private int fileSize;
+    private String filePath;
+    private long fileSize;
 
     protected FileSpecs() {
     }
@@ -33,11 +34,11 @@ public class FileSpecs {
         this.name = name;
     }
 
-    public int getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(int fileSize) {
+    public void setFileSize(long fileSize) {
         this.fileSize = fileSize;
     }
 

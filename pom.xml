@@ -14,6 +14,7 @@
         <module>gft-client</module>
         <module>batch</module>
         <module>rest</module>
+        <module>glassfish</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -35,9 +36,14 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>nl.ocwduo.vzub</groupId>
+                <artifactId>rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
-                <version>6.0</version>
+                <version>7.0</version>
             </dependency>
             <dependency>
                 <!-- Import dependency management from Spring Boot -->
