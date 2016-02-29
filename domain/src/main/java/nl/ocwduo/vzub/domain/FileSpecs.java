@@ -23,7 +23,7 @@ public class FileSpecs {
     private String filePath;
     @Column(length = 20)
     private long fileSize;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileLock fileLock;
 
     protected FileSpecs() {

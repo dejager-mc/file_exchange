@@ -17,13 +17,13 @@ public class BackofficeFile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private EmailNotification emailNotification;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<FileStatus> history;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 
     public EmailNotification getEmailNotification() {
