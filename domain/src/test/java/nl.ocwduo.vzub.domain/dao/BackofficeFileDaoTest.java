@@ -24,13 +24,17 @@ public class BackofficeFileDaoTest {
     private BackofficeFileDao backofficeFileDao;
 
     @Test
+    @Transactional
     public void testSavingBackofficeFileToDatabase() {
         BackofficeFile file = new BackofficeFile();
         file = backofficeFileDao.save(file);
         file.setEmailNotification(new EmailNotification());
         file = backofficeFileDao.save(file);
+        long fileId = file.getId();
+        file = null;
+
+        backofficeFileDao.findOne(fileId);
         System.out.println("File id is: " + file.getId());
-        backofficeFileDao.findOne(file.getId());
     }
 
 }
