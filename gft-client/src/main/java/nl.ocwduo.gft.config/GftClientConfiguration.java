@@ -9,7 +9,7 @@ import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
  * Created by Machiel de Jager on 24-2-2016.
  */
 @Configuration
-public class RootConfiguration {
+public class GftClientConfiguration {
 
     @Value("#{ systemProperties['zkl.endpoint'] }")
     private String zklEndpoint;

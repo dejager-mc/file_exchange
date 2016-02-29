@@ -1,9 +1,6 @@
 package nl.ocwduo.vzub.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -13,15 +10,21 @@ import javax.persistence.Id;
  *
  */
 @Entity
+@Table
 public class FileSpecs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(length = 255)
     private String name;
+    @Column(length = 1024)
     private String filePath;
+    @Column(length = 20)
     private long fileSize;
+    @OneToOne
+    private FileLock fileLock;
 
     protected FileSpecs() {
     }

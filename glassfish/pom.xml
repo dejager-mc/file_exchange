@@ -12,18 +12,19 @@
     <artifactId>glassfish</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>nl.ocwduo.vzub</groupId>
-            <artifactId>rest</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>nl.ocwduo.vzub</groupId>-->
+            <!--<artifactId>rest</artifactId>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.glassfish.extras</groupId>
             <artifactId>glassfish-embedded-all</artifactId>
-            <version>3.0</version>
+            <version>3.1.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
+        <finalName>glassfish</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,12 +42,11 @@
                 <configuration>
                     <serverID>server</serverID>
                     <name>server</name>
-                    <app>${project.build.directory}\..\..\rest\target\xrest.war</app>
+                    <app>${project.build.directory}\..\..\rest\target\rest.war</app>
                     <port>8888</port>
-                    <instanceRoot>${project.build.directory}/glassfish-${maven.build.timestamp}
-                    </instanceRoot>
+                    <!--<instanceRoot>${project.build.directory}/glassfish</instanceRoot>-->
                     <autoDelete>true</autoDelete>
-                    <configFile>${basedir}/domain.xml</configFile>
+                    <configFile>${basedir}\domain.xml</configFile>
                 </configuration>
             </plugin>
         </plugins>

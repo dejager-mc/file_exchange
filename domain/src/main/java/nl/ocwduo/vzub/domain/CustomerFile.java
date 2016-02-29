@@ -11,16 +11,17 @@ import java.util.List;
     Een bestand dat van de klant komt
  */
 @Entity
+@Table(name = "CUS_FILE")
 public class CustomerFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private GftKanaal gftKanaal;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<FileStatus> history;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private FileSpecs fileSpecs;
 
     //    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand
