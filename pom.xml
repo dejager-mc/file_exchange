@@ -15,6 +15,8 @@
         <module>batch</module>
         <module>rest</module>
         <module>glassfish</module>
+        <module>../liquibase</module>
+        <module>liquibase</module>
     </modules>
     <packaging>pom</packaging>
 

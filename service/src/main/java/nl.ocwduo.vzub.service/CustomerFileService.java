@@ -1,7 +1,7 @@
 package nl.ocwduo.vzub.service;
 
-import nl.ocwduo.vzub.dao.CustomerFileDao;
-import nl.ocwduo.vzub.domain.CustomerFile;
+import nl.ocwduo.vzub.domain.dao.CustomerFileDao;
+import nl.ocwduo.vzub.domain.model.CustomerFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
