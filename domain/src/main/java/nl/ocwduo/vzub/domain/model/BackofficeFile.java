@@ -11,7 +11,7 @@ import java.util.List;
     Een bestand dat vanuit de backoffice komt
  */
 @Entity
-@Table(name = "BACKOFFICEFILE")
+@Table(name = "Backoffice_File")
 public class BackofficeFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,6 @@ public class BackofficeFile {
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private EmailNotification emailNotification;
-
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<FileStatus> history;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
@@ -40,14 +37,6 @@ public class BackofficeFile {
 
     public void setFileSpecs(FileSpecs fileSpecs) {
         this.fileSpecs = fileSpecs;
-    }
-
-    public List<FileStatus> getHistory() {
-        return history;
-    }
-
-    public void setHistory(List<FileStatus> history) {
-        this.history = history;
     }
 
     public long getId() {

@@ -12,4 +12,32 @@
     <artifactId>liquibase</artifactId>
 
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.4.1</version>
+                <configuration>
+                    <outputChangeLogFile>src/resources/db.changelog.vzub.xml</outputChangeLogFile>
+                    <changeLogFile>src/resources/master.changelog.xml</changeLogFile>
+                    <username>${database.username}</username>
+                    <password>${database.password}</password>
+                    <defaultSchemaName>${database.schema}</defaultSchemaName>
+                    <url>jdbc:as400://172.30.253.31/${database.schema};prompt=false;date
+                        format=iso;</url>
+                    <driver>com.ibm.as400.access.AS400JDBCDriver</driver>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.ibm.as400</groupId>
+                        <artifactId>jt400-type4</artifactId>
+                        <version>7.6</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

@@ -1,6 +1,7 @@
 package nl.ocwduo.vzub.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -11,16 +12,16 @@ import java.util.List;
     Een bestand dat van de klant komt
  */
 @Entity
-@Table(name = "CUSTOMERFILE")
+@Table(name = "Customer_File")
 public class CustomerFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @NotNull
     private GftKanaal gftKanaal;
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    private List<FileStatus> history;
+
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 

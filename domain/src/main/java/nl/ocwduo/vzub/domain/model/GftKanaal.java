@@ -1,12 +1,13 @@
 package nl.ocwduo.vzub.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
  */
 @Entity
-@Table
+@Table(name = "GFT_Kanaal")
 public class GftKanaal {
 
     @Id
@@ -14,5 +15,6 @@ public class GftKanaal {
     private long id;
 
     @Column(length = 50)
+    @NotNull
     private String kanaalNaam;
 }

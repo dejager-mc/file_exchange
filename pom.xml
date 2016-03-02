@@ -11,11 +11,10 @@
         <module>domain</module>
         <module>service</module>
         <module>fileshare</module>
-        <module>gft-client</module>
+        <module>zkl-client</module>
         <module>batch</module>
         <module>rest</module>
         <module>glassfish</module>
-        <module>../liquibase</module>
         <module>liquibase</module>
     </modules>
     <packaging>pom</packaging>

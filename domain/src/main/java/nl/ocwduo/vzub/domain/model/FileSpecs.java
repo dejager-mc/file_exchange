@@ -1,6 +1,8 @@
 package nl.ocwduo.vzub.domain.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -10,7 +12,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table
+@Table(name = "File_Specs")
 public class FileSpecs {
 
     @Id
@@ -18,13 +20,19 @@ public class FileSpecs {
     private long id;
 
     @Column(length = 255)
+    @NotNull
     private String fileName;
     @Column(length = 1024)
+    @NotNull
     private String filePath;
     @Column(length = 20)
+    @NotNull
     private long fileSize;
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    @NotNull
     private FileLock fileLock;
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "filespecs")
+    private List<FileStatus> history;
 
     protected FileSpecs() {
     }

@@ -1,4 +1,4 @@
-package nl.ocwduo.gft.config;
+package nl.ocwduo.zkl.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
  * Created by Machiel de Jager on 24-2-2016.
  */
 @Configuration
-public class GftClientConfiguration {
+public class ZklClientConfiguration {
 
     @Value("#{ systemProperties['zkl.endpoint'] }")
     private String zklEndpoint;
