@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.rest;
 
-import nl.ocwduo.vzub.domain.model.CustomerFile;
+import nl.ocwduo.vzub.domain.model.fileType.CustomerFile;
 import nl.ocwduo.vzub.service.CustomerFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

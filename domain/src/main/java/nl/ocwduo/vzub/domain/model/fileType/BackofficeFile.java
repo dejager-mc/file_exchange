@@ -1,7 +1,10 @@
-package nl.ocwduo.vzub.domain.model;
+package nl.ocwduo.vzub.domain.model.fileType;
+
+import nl.ocwduo.vzub.domain.model.configuration.EmailNotification;
+import nl.ocwduo.vzub.domain.model.fileType.genericDetails.Dienst;
+import nl.ocwduo.vzub.domain.model.theFile.FileSpecs;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -13,15 +16,18 @@ import java.util.List;
 @Entity
 @Table(name = "Backoffice_File")
 public class BackofficeFile {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+
+
+    // id
+    private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private EmailNotification emailNotification;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
+
+    private Dienst dienst;
 
     public EmailNotification getEmailNotification() {
         return emailNotification;
@@ -39,7 +45,4 @@ public class BackofficeFile {
         this.fileSpecs = fileSpecs;
     }
 
-    public long getId() {
-        return id;
-    }
 }

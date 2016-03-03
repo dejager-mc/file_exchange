@@ -1,4 +1,6 @@
-package nl.ocwduo.vzub.domain.model;
+package nl.ocwduo.vzub.domain.model.fileType.genericDetails;
+
+import nl.ocwduo.vzub.domain.model.theFile.FileSpecs;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

@@ -1,8 +1,11 @@
-package nl.ocwduo.vzub.domain.model;
+package nl.ocwduo.vzub.domain.model.fileType;
+
+import nl.ocwduo.vzub.domain.model.fileType.genericDetails.Dienst;
+import nl.ocwduo.vzub.domain.model.theFile.FileSpecs;
+import nl.ocwduo.vzub.domain.model.configuration.GftKanaal;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -14,9 +17,8 @@ import java.util.List;
 @Entity
 @Table(name = "Customer_File")
 public class CustomerFile {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    // id
+    private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     @NotNull
@@ -25,5 +27,9 @@ public class CustomerFile {
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 
-    //    private Dienst dienst;    // De dienst die gekoppeld is aan dit bestand
+    private Dienst dienst;
+
+    private String nameMatchingRegExp;  // requirement vanuit de backoffice
+
+    private int processingDelay;
 }

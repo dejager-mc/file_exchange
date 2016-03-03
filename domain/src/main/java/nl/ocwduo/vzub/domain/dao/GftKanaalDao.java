@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.dao;
 
-import nl.ocwduo.vzub.domain.model.GftKanaal;
+import nl.ocwduo.vzub.domain.model.configuration.GftKanaal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

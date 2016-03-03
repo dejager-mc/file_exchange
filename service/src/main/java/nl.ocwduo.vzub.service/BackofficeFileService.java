@@ -1,7 +1,7 @@
 package nl.ocwduo.vzub.service;
 
 import nl.ocwduo.vzub.domain.dao.BackofficeFileDao;
-import nl.ocwduo.vzub.domain.model.BackofficeFile;
+import nl.ocwduo.vzub.domain.model.fileType.BackofficeFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
