@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.model.configuration;
+package nl.ocwduo.vzub.domain.model.fileConfig.details;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

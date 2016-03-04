@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.dao;
 
-import nl.ocwduo.vzub.domain.model.fileType.BackofficeFile;
+import nl.ocwduo.vzub.domain.model.file.BackofficeFile;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

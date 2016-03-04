@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.model;
+package nl.ocwduo.vzub.domain.model.fileConfig.details;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +12,9 @@ public class EmailNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    // annotatie?
+    private String fromEmailAddress;
 
     @Column(length = 255)
     @NotNull

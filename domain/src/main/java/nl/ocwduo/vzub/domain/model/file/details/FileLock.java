@@ -1,6 +1,4 @@
-package nl.ocwduo.vzub.domain.model.fileType.genericDetails;
-
-import nl.ocwduo.vzub.domain.model.theFile.FileSpecs;
+package nl.ocwduo.vzub.domain.model.file.details;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,12 +19,7 @@ public class FileLock {
     private long id;
 
 
-    @OneToOne(orphanRemoval = false, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @NotNull
-    private FileSpecs fileSpecs;
-    @Column(length = 50)
-    @NotNull
-    private String lockerId;    // welke machine / thread de locks heeft gelegd
+
     @Column(length = 20)
     @NotNull
     private Long lockMoment;

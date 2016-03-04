@@ -1,6 +1,4 @@
-package nl.ocwduo.vzub.domain.model.fileType.genericDetails;
-
-import nl.ocwduo.vzub.domain.model.theFile.FileSpecs;
+package nl.ocwduo.vzub.domain.model.file.details;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,6 +20,5 @@ public class FileStatus {
     @NotNull
     private Long moment;
     private java.time.LocalDateTime time;
-    @ManyToOne
-    private FileSpecs fileSpecs;
+
 }

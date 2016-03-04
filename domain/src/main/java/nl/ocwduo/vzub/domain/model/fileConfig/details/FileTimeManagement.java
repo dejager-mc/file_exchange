@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.model.fileType.genericDetails;
+package nl.ocwduo.vzub.domain.model.fileConfig.details;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -12,5 +12,6 @@ public class FileTimeManagement {
 
     private int keepFileForDays;
     private int keepFileAfterDownloadingForDays;
+    private int waitForSomethingForDays;
 
 }

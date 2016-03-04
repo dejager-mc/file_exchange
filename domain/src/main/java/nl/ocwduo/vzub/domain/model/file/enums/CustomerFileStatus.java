@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.model.enums;
+package nl.ocwduo.vzub.domain.model.file.enums;
 
 /**
  * Created by dejag on 22/02/2016.

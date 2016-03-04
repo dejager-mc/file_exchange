@@ -1,8 +1,4 @@
-package nl.ocwduo.vzub.domain.model.theFile;
-
-import nl.ocwduo.vzub.domain.model.fileType.genericDetails.Dienst;
-import nl.ocwduo.vzub.domain.model.fileType.genericDetails.FileLock;
-import nl.ocwduo.vzub.domain.model.fileType.genericDetails.FileStatus;
+package nl.ocwduo.vzub.domain.model.file.details;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -33,14 +29,10 @@ public class FileSpecs {
     @NotNull
     private long fileSize;
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
-    @NotNull
-    private FileLock fileLock;
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "filespecs")
-    private List<FileStatus> history;
+
     private Long creationDateTime;
 
-    @OneToOne
-    private Dienst dienst;
+
 
     protected FileSpecs() {
     }
