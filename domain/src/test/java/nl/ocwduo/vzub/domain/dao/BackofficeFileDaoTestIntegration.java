@@ -23,7 +23,6 @@ public class BackofficeFileDaoTestIntegration extends testMain {
     public void testSavingBackofficeFileToDatabase() {
         BackofficeFile file = new BackofficeFile();
         file = backofficeFileDao.save(file);
-        file.setEmailNotification(new EmailNotification());
         file = backofficeFileDao.save(file);
         long fileId = file.getId();
         file = null;
