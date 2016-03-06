@@ -3,7 +3,7 @@ package nl.ocwduo.vzub.domain.model.file;
 import nl.ocwduo.vzub.domain.model.file.details.FileLock;
 import nl.ocwduo.vzub.domain.model.file.details.FileSpecs;
 import nl.ocwduo.vzub.domain.model.file.details.FileStatus;
-import nl.ocwduo.vzub.domain.model.fileConfig.FileConfig;
+import nl.ocwduo.vzub.domain.model.fileType.FileTypeConfiguration;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -20,32 +20,24 @@ import java.util.List;
 @Table(name = "Backoffice_File")
 public class BackofficeFile {
 
+    @Id
+    private long id;
 
-    // id
+    @NotNull
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 
     @ManyToOne
-    private FileConfig fileConfig;
+    private FileTypeConfiguration fileTypeConfiguration;
 
 //    private Dienst dienst;
 // bij het aanmaken van deze entiteit wordt de opgegeven organisatie
-    // in het gft bericht gecontroleerd of deze hoort bij een FileConfig
+    // in het gft bericht gecontroleerd of deze hoort bij een FileTypeConfiguration
 
-    @NotNull
+    @OneToOne
     private FileLock fileLock;
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "filespecs")
     private List<FileStatus> history;
-
-
-    public FileSpecs getFileSpecs() {
-        return fileSpecs;
-    }
-
-    public void setFileSpecs(FileSpecs fileSpecs) {
-        this.fileSpecs = fileSpecs;
-    }
-
 }
