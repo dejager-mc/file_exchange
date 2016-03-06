@@ -23,8 +23,7 @@
                     <username>${database.username}</username>
                     <password>${database.password}</password>
                     <defaultSchemaName>${database.schema}</defaultSchemaName>
-                    <url>jdbc:as400://172.30.253.31/${database.schema};prompt=false;date
-                        format=iso;</url>
+                    <url>jdbc:as400://172.30.253.31/${database.schema};prompt=false;dateformat=iso;</url>
                     <driver>com.ibm.as400.access.AS400JDBCDriver</driver>
                 </configuration>
                 <dependencies>
@@ -38,5 +37,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>my-repo1</id>
+            <name>your custom repo</name>
+            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+        </repository>
+    </repositories>
 
 </project>

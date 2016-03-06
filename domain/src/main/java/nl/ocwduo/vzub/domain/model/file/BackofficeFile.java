@@ -1,11 +1,9 @@
 package nl.ocwduo.vzub.domain.model.file;
 
 import nl.ocwduo.vzub.domain.model.file.details.FileLock;
+import nl.ocwduo.vzub.domain.model.file.details.FileSpecs;
 import nl.ocwduo.vzub.domain.model.file.details.FileStatus;
 import nl.ocwduo.vzub.domain.model.fileConfig.FileConfig;
-import nl.ocwduo.vzub.domain.model.fileConfig.details.EmailNotification;
-import nl.ocwduo.vzub.domain.model.file.details.Dienst;
-import nl.ocwduo.vzub.domain.model.file.details.FileSpecs;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

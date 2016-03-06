@@ -1,8 +1,8 @@
 package nl.ocwduo.vzub.domain.dao;
 
+import nl.ocwduo.vzub.domain.dao.file.BackofficeFileDao;
 import nl.ocwduo.vzub.domain.main.testMain;
 import nl.ocwduo.vzub.domain.model.file.BackofficeFile;
-import nl.ocwduo.vzub.domain.model.fileConfig.details.EmailNotification;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

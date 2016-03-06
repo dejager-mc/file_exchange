@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.dao;
+package nl.ocwduo.vzub.domain.dao.file;
 
 import nl.ocwduo.vzub.domain.model.file.BackofficeFile;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Machiel de Jager on 20-2-2016.
  */
-public interface BackofficeFileDao extends JpaRepository<BackofficeFile, Long> {
-
+public interface BackofficeFileDao extends JpaRepository<BackofficeFile, String> {
+    // find file by config file name
 }
