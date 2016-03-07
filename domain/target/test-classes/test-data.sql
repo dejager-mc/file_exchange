@@ -1,1 +1,0 @@
-insert into GftKanaal values (1, 'testKanaal');
