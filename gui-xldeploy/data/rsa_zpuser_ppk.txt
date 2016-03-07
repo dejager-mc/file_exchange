@@ -1,0 +1,6 @@
+-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: {{rsa.private.key.proctype}}
+DEK-Info: {{rsa.private.key.dekinfo}}
+
+{{rsa.private.key.keydata}}
+-----END RSA PRIVATE KEY-----
