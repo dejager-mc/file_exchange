@@ -1,0 +1,13 @@
+nl\ocwduo\vzub\domain\dao\BackofficeFileDao.class
+nl\ocwduo\vzub\domain\model\FileSpecs.class
+nl\ocwduo\vzub\domain\model\BackofficeFile.class
+nl\ocwduo\vzub\domain\config\DomainConfiguration.class
+nl\ocwduo\vzub\domain\dao\CustomerFileDao.class
+nl\ocwduo\vzub\domain\model\CustomerFile.class
+nl\ocwduo\vzub\domain\model\FileStatus.class
+nl\ocwduo\vzub\domain\model\GftKanaal.class
+nl\ocwduo\vzub\domain\model\enums\CustomerFileStatus.class
+nl\ocwduo\vzub\domain\dao\GftKanaalDao.class
+nl\ocwduo\vzub\domain\model\enums\BackofficeFileStatus.class
+nl\ocwduo\vzub\domain\model\FileLock.class
+nl\ocwduo\vzub\domain\model\EmailNotification.class

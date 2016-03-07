@@ -1,6 +1,6 @@
 -----BEGIN RSA PRIVATE KEY-----
-Proc-Type: {{rsa.private.key.proctype}}
-DEK-Info: {{rsa.private.key.dekinfo}}
+Proc-Type: {{rsa.zpuser.private.key.proctype}}
+DEK-Info: {{rsa.zpuser.private.key.dekinfo}}
 
-{{rsa.private.key.keydata}}
+{{rsa.zpuser.private.key.keydata}}
 -----END RSA PRIVATE KEY-----

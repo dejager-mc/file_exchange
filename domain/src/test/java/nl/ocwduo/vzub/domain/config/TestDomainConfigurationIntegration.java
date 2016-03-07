@@ -1,6 +1,7 @@
 package nl.ocwduo.vzub.domain.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created by Machiel de Jager on 29-2-2016.
@@ -22,13 +24,14 @@ import javax.sql.DataSource;
 @Configuration
 @EnableJpaRepositories(basePackages = "nl.ocwduo.vzub.domain")
 @EnableTransactionManagement
+@ComponentScan("nl.ocwduo.vzub.domain")
 @Profile("unit-test")
 public class TestDomainConfigurationIntegration {
 
     @Bean
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        builder.setType(EmbeddedDatabaseType.HSQL).addScripts("create-db.sql", "test-data.sql");
+        builder.setType(EmbeddedDatabaseType.HSQL);//.addScripts("create-db.sql", "test-data.sql");
         return  builder.build();
     }
 
@@ -43,6 +46,12 @@ public class TestDomainConfigurationIntegration {
         factory.setPackagesToScan("nl.ocwduo.vzub.domain");
         factory.setDataSource(dataSource());
         factory.afterPropertiesSet();
+
+        final Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+
+        factory.setJpaProperties(hibernateProperties);
 
         return factory.getObject();
     }

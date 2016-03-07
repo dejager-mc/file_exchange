@@ -1,5 +1,7 @@
 package nl.ocwduo.vzub.domain.model.file.details;
 
+import nl.ocwduo.vzub.domain.model.file.File;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -10,8 +12,12 @@ import javax.validation.constraints.NotNull;
 @Table(name = "File_Status")
 public class FileStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @ManyToOne
+    private File file;
 
     @Column(length = 30)
     @NotNull
@@ -19,6 +25,32 @@ public class FileStatus {
     @Column(length = 20)
     @NotNull
     private Long moment;
-    private java.time.LocalDateTime time;
 
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public Long getMoment() {
+        return moment;
+    }
+
+    public void setMoment(Long moment) {
+        this.moment = moment;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

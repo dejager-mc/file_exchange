@@ -1,0 +1,14 @@
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\FileLock.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\SchemaGenerator.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\FileStatus.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\GftKanaal.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\dao\BackofficeFileDao.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\FileSpecs.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\BackofficeFile.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\dao\GftKanaalDao.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\CustomerFile.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\EmailNotification.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\enums\CustomerFileStatus.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\model\enums\BackofficeFileStatus.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\config\DomainConfiguration.java
+D:\JAVA\Projects\VZUB_JI\workspaces\herbouw\file_exchange\domain\src\main\java\nl\ocwduo\vzub\domain\dao\CustomerFileDao.java

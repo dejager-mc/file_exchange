@@ -16,12 +16,12 @@ import java.util.List;
 /*
     Een bestand dat van de klant komt
  */
-@Entity
-@Table(name = "Customer_File")
 public class CustomerFile {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @NotNull
+    @Column(length = 255)
     private String name;
 
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -29,10 +29,54 @@ public class CustomerFile {
 
     @NotNull
     private FileLock fileLock;
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "filespecs")
+
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<FileStatus> history;
 
     @ManyToOne
     private FileTypeConfiguration fileTypeConfiguration;
 
+    public FileLock getFileLock() {
+        return fileLock;
+    }
+
+    public void setFileLock(FileLock fileLock) {
+        this.fileLock = fileLock;
+    }
+
+    public FileSpecs getFileSpecs() {
+        return fileSpecs;
+    }
+
+    public void setFileSpecs(FileSpecs fileSpecs) {
+        this.fileSpecs = fileSpecs;
+    }
+
+    public FileTypeConfiguration getFileTypeConfiguration() {
+        return fileTypeConfiguration;
+    }
+
+    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
+        this.fileTypeConfiguration = fileTypeConfiguration;
+    }
+
+    public List<FileStatus> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<FileStatus> history) {
+        this.history = history;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

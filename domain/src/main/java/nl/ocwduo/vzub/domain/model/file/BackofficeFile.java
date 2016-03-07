@@ -16,28 +16,70 @@ import java.util.List;
 /*
     Een bestand dat vanuit de backoffice komt
  */
-@Entity
-@Table(name = "Backoffice_File")
 public class BackofficeFile {
 
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
+    @Column(length = 255)
     private String name;
 
+    @NotNull
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 
+    @NotNull
     @ManyToOne
     private FileTypeConfiguration fileTypeConfiguration;
 
-//    private Dienst dienst;
-// bij het aanmaken van deze entiteit wordt de opgegeven organisatie
-    // in het gft bericht gecontroleerd of deze hoort bij een FileTypeConfiguration
-
     @OneToOne
     private FileLock fileLock;
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "filespecs")
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private List<FileStatus> history;
+
+    public FileLock getFileLock() {
+        return fileLock;
+    }
+
+    public void setFileLock(FileLock fileLock) {
+        this.fileLock = fileLock;
+    }
+
+    public FileSpecs getFileSpecs() {
+        return fileSpecs;
+    }
+
+    public void setFileSpecs(FileSpecs fileSpecs) {
+        this.fileSpecs = fileSpecs;
+    }
+
+    public FileTypeConfiguration getFileTypeConfiguration() {
+        return fileTypeConfiguration;
+    }
+
+    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
+        this.fileTypeConfiguration = fileTypeConfiguration;
+    }
+
+    public List<FileStatus> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<FileStatus> history) {
+        this.history = history;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

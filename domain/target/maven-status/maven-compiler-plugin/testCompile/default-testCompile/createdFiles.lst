@@ -1,0 +1,4 @@
+nl\ocwduo\vzub\domain\main\testMain.class
+nl\ocwduo\vzub\domain\dao\BackofficeFileDaoTestIntegration.class
+nl\ocwduo\vzub\domain\dao\GftKanaalDaoTestIntegration.class
+nl\ocwduo\vzub\domain\config\TestDomainConfigurationIntegration.class

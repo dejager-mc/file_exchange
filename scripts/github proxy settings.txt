@@ -1,0 +1,1 @@
+git config --global http.proxy http://in434jag:wW!!201603@proxy.prd.duo.nl:8080

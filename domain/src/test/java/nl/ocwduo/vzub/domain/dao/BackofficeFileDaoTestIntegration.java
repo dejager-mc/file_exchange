@@ -1,8 +1,10 @@
 package nl.ocwduo.vzub.domain.dao;
 
 import nl.ocwduo.vzub.domain.dao.file.BackofficeFileDao;
+import nl.ocwduo.vzub.domain.dao.file.FileDao;
 import nl.ocwduo.vzub.domain.main.testMain;
 import nl.ocwduo.vzub.domain.model.file.BackofficeFile;
+import nl.ocwduo.vzub.domain.model.file.File;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class BackofficeFileDaoTestIntegration extends testMain {
 
     @Autowired
-    private BackofficeFileDao backofficeFileDao;
+    private FileDao backofficeFileDao;
 
     @Test
     @Transactional
     public void testSavingBackofficeFileToDatabase() {
-        BackofficeFile file = new BackofficeFile();
+        File file = new File();
         file = backofficeFileDao.save(file);
         file = backofficeFileDao.save(file);
         long fileId = file.getId();

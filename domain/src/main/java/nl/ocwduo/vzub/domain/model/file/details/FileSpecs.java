@@ -1,8 +1,9 @@
 package nl.ocwduo.vzub.domain.model.file.details;
 
+import nl.ocwduo.vzub.domain.model.file.File;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Created by Machiel de Jager on 20-2-2016.
@@ -16,8 +17,12 @@ import java.util.List;
 public class FileSpecs {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
+    @OneToOne
+    private File file;
 
     @Column(length = 255)
     @NotNull
@@ -27,28 +32,41 @@ public class FileSpecs {
     private String filePath;
     @Column(length = 20)
     @NotNull
-    private long fileSize;
-    @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    private Long fileSize;
 
-    private Long creationDateTime;
-
-
-
-    protected FileSpecs() {
+    public File getFile() {
+        return file;
     }
 
+    public void setFile(File file) {
+        this.file = file;
+    }
 
+    public String getFileName() {
+        return fileName;
+    }
 
-    public long getFileSize() {
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public Long getFileSize() {
         return fileSize;
     }
 
-    public void setFileSize(long fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 
-    @Override
-    public String toString() {
-        return String.format("FileSpecs[id=%d, fileName='%s', fileSize=%d]", id, fileName, fileSize);
+    public Long getId() {
+        return id;
     }
 }
