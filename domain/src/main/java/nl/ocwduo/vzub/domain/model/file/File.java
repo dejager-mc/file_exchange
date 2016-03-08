@@ -26,9 +26,8 @@ public class File {
     @OneToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
     private FileSpecs fileSpecs;
 
-    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "File_Type_ID")
+    @JoinColumn(name = "filetype_files")
     private FileType fileType;
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)

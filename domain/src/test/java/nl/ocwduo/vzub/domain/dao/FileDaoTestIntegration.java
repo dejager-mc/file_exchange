@@ -32,7 +32,7 @@ import static org.junit.Assert.assertTrue;
  * Created by in434jag on 29-2-2016.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-public class BackofficeFileDaoTestIntegration extends testMain {
+public class FileDaoTestIntegration extends testMain {
 
     @Autowired
     private FileDao fileDao;
@@ -61,14 +61,13 @@ public class BackofficeFileDaoTestIntegration extends testMain {
 
     public Long getIdSavedFile() {
         // maak filetype
-        FileType fileType = getBackOfficeDefaultFileType();
-        fileType = fileTypeDao.save(fileType);
+        FileType fileType = saveFileType(getBackOfficeDefaultFileType());
 
         // maak file
         File file = getBackOfficeDefaultFile();
         file.setFileType(fileType);
         file = fileDao.save(file);
-        assertNotNull("File id moet niet null zijn", file.getId());
+        assertNotNull("File id moet bestaan", file.getId());
 
         return file.getId();
     }
@@ -76,15 +75,29 @@ public class BackofficeFileDaoTestIntegration extends testMain {
     public Long getIdSavedFileType() {
         // maak filetype
         FileType fileType = getBackOfficeDefaultFileType();
-        fileType = fileTypeDao.save(fileType);
+
 
         // maak file
         File file = getBackOfficeDefaultFile();
         file.setFileType(fileType);
-        file = fileDao.save(file);
+        //file = fileDao.save(file);
+        List<File> files = new ArrayList<>();
+        files.add(file);
+        fileType.setFiles(files);
+
+        saveFileType(fileType);
+
         assertNotNull("File id moet niet null zijn", file.getId());
 
         return fileType.getId();
+    }
+
+    private FileType saveFileType(FileType fileType) {
+        return fileTypeDao.save(fileType);
+    }
+
+    private File saveFile(File file) {
+        return fileDao.save(file);
     }
 
     @Test
@@ -105,8 +118,7 @@ public class BackofficeFileDaoTestIntegration extends testMain {
     @Transactional
     public void testSaveFileAgain() {
         // maak filetype
-        FileType fileType = getBackOfficeDefaultFileType();
-        fileType = fileTypeDao.save(fileType);
+        FileType fileType = saveFileType(getBackOfficeDefaultFileType());
 
         // maak file
         File file = getBackOfficeDefaultFile();
@@ -163,12 +175,16 @@ public class BackofficeFileDaoTestIntegration extends testMain {
         // 2 files
         Long fileId = getIdSavedFileType();
 
+        assertTrue("Er zou nu 1 fileType moeten bestaan. Het zijn er: " + fileTypeDao.findAll().size(), fileTypeDao.findAll().size() == 1);
+        assertTrue("Er zou 1 file moeten bestaan. Het zijn er: " + fileDao.findAll().size(), fileDao.findAll().size() == 1);
+
         FileType fileType = fileTypeDao.findOne(fileId);
         assertNotNull("fileType moet gevonden worden", fileType);
         assertTrue("Gevonden naam moet 'BackOfficeFileType' zijn", fileType.getName().equals("BackOfficeFileType"));
 
         List<File> files = fileType.getFiles();
-        assertTrue("er zouden 2 files moeten zijn maar het zijn er: " + files.stream().count(), files.stream().count() == 2);
+        assertNotNull("Lijst met bestanden is null", files);
+        assertTrue("er zou 1 file moeten zijn maar het zijn er: " + files.stream().count(), files.stream().count() == 1);
     }
 
     private File getBackOfficeDefaultFile() {

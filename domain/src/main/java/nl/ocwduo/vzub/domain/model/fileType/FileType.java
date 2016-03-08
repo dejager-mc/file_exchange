@@ -47,7 +47,8 @@ public class FileType {
     @NotNull
     private FileKind fileKind;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.REFRESH, mappedBy="fileType")
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "filetype_files")
     private List<File> files;
 
 
