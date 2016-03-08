@@ -21,17 +21,7 @@ public class FileStatus {
     @Column(length = 20)
     @NotNull
     private Long moment;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "File_ID")
-    private File file;
 
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public long getId() {
         return id;

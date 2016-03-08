@@ -27,13 +27,12 @@ public class File {
     private FileSpecs fileSpecs;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "filetype_files")
     private FileType fileType;
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileLock fileLock;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="file", orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
     private List<FileStatus> history;
 
 

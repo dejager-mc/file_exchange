@@ -47,21 +47,9 @@ public class FileType {
     @NotNull
     private FileKind fileKind;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "filetype_files")
-    private List<File> files;
-
 
     public Long getId() {
         return id;
-    }
-
-    public List<File> getFiles() {
-        return files;
-    }
-
-    public void setFiles(List<File> files) {
-        this.files = files;
     }
 
     public String getDiscription() {
