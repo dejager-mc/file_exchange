@@ -1,5 +1,6 @@
 package nl.ocwduo.vzub.domain.dao;
 
+import junit.framework.TestCase;
 import nl.ocwduo.vzub.domain.dao.file.FileDao;
 import nl.ocwduo.vzub.domain.dao.fileType.FileTypeDao;
 import nl.ocwduo.vzub.domain.main.testMain;
@@ -12,6 +13,7 @@ import nl.ocwduo.vzub.domain.model.fileType.details.EmailNotification;
 import nl.ocwduo.vzub.domain.model.fileType.details.FileTimeManagement;
 import nl.ocwduo.vzub.domain.model.fileType.enums.FileKind;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by in434jag on 29-2-2016.
@@ -32,7 +39,8 @@ public class BackofficeFileDaoTestIntegration extends testMain {
     @Autowired
     private FileTypeDao fileTypeDao;
 
-    @After
+//    @After
+    @Before
     public void clearDataFromDatabase() {
         fileDao.findAll()
                 .stream()
@@ -51,9 +59,7 @@ public class BackofficeFileDaoTestIntegration extends testMain {
         fileDao.delete(file);
     }
 
-    @Test
-    @Transactional
-    public void testSaveFileWithExistingFileType() {
+    public Long getIdSavedFile() {
         // maak filetype
         FileType fileType = getBackOfficeDefaultFileType();
         fileType = fileTypeDao.save(fileType);
@@ -62,11 +68,12 @@ public class BackofficeFileDaoTestIntegration extends testMain {
         File file = getBackOfficeDefaultFile();
         file.setFileType(fileType);
         file = fileDao.save(file);
+        assertNotNull("File id moet niet null zijn", file.getId());
+
+        return file.getId();
     }
 
-    @Test
-    @Transactional
-    public void testSaveFileWithExistingFileTypeCheckIfCleanupWorks() {
+    public Long getIdSavedFileType() {
         // maak filetype
         FileType fileType = getBackOfficeDefaultFileType();
         fileType = fileTypeDao.save(fileType);
@@ -75,14 +82,103 @@ public class BackofficeFileDaoTestIntegration extends testMain {
         File file = getBackOfficeDefaultFile();
         file.setFileType(fileType);
         file = fileDao.save(file);
+        assertNotNull("File id moet niet null zijn", file.getId());
+
+        return fileType.getId();
     }
 
-   private File getBackOfficeDefaultFile() {
-       File file = new File();
-       file.setFileSpecs(getFileSpecs());
-       file.getHistory().add(getBackOfficeDefaultFileStatus());
-       return file;
-   }
+    @Test
+    @Transactional
+    public void testSaveFile() {
+        // maak filetype
+        FileType fileType = getBackOfficeDefaultFileType();
+        fileType = fileTypeDao.save(fileType);
+
+        // maak file
+        File file = getBackOfficeDefaultFile();
+        file.setFileType(fileType);
+        file = fileDao.save(file);
+        assertNotNull("File id moet niet null zijn", file.getId());
+    }
+
+    @Test
+    @Transactional
+    public void testSaveFileAgain() {
+        // maak filetype
+        FileType fileType = getBackOfficeDefaultFileType();
+        fileType = fileTypeDao.save(fileType);
+
+        // maak file
+        File file = getBackOfficeDefaultFile();
+        file.setFileType(fileType);
+        file = fileDao.save(file);
+        assertNotNull("File id moet niet null zijn", file.getId());
+    }
+
+    @Test
+    @Transactional
+    public void testSaveMultipleFilesWithTheSameFileType() {
+        // maak filetype
+        FileType fileType = getBackOfficeDefaultFileType();
+        fileType = fileTypeDao.save(fileType);
+
+        // maak file
+        File file = getBackOfficeDefaultFile();
+        file.setFileType(fileType);
+        file = fileDao.save(file);
+        assertNotNull("File 1 id moet niet null zijn", file.getId());
+
+        // maak file nog een file
+        File file2 = getBackOfficeDefaultFile();
+        file2.setFileType(fileType);
+        file2 = fileDao.save(file2);
+        assertNotNull("File 2 id moet niet null zijn", file2.getId());
+    }
+
+    @Test
+    @Transactional
+    public void testFindFile() {
+        // 1 filetype
+        // 2 files
+        Long fileId = getIdSavedFile();
+
+        File file = fileDao.findOne(fileId);
+        assertNotNull("File is null", file);
+        assertTrue("FileSpecs mag nooit null zijn", file.getFileSpecs() != null);
+        assertTrue("Gevonden naam moet 'file_name' zijn maar is: " + file.getFileSpecs().getFileName(), file.getFileSpecs().getFileName().equals("file_name"));
+
+        FileType fileType = file.getFileType();
+        assertNotNull("FileType mag nooit null zijn", fileType);
+        assertTrue("FileType naam moet 'BackOfficeFileType' zijn maar is: " + fileType.getName(), fileType.getName().equals("BackOfficeFileType"));
+
+        List<FileStatus> history = file.getHistory();
+        assertNotNull("History is null", history);
+        assertTrue("History zou 1 status moeten hebben. Het zijn er: " + history.size(), history.size() == 1);
+    }
+
+    @Test
+    @Transactional
+    public void testFindFileType() {
+        // 1 filetype
+        // 2 files
+        Long fileId = getIdSavedFileType();
+
+        FileType fileType = fileTypeDao.findOne(fileId);
+        assertNotNull("fileType moet gevonden worden", fileType);
+        assertTrue("Gevonden naam moet 'BackOfficeFileType' zijn", fileType.getName().equals("BackOfficeFileType"));
+
+        List<File> files = fileType.getFiles();
+        assertTrue("er zouden 2 files moeten zijn maar het zijn er: " + files.stream().count(), files.stream().count() == 2);
+    }
+
+    private File getBackOfficeDefaultFile() {
+        File file = new File();
+        file.setFileSpecs(getFileSpecs());
+        List<FileStatus> history = new ArrayList<>();
+        history.add(getBackOfficeDefaultFileStatus());
+        file.setHistory(history);
+        return file;
+    }
 
     private FileStatus getBackOfficeDefaultFileStatus() {
         FileStatus fileStatus = new FileStatus();

@@ -19,6 +19,7 @@ import java.util.List;
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "File_ID")
     private Long id;
 
     @NotNull
@@ -26,14 +27,17 @@ public class File {
     private FileSpecs fileSpecs;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "File_Type_ID")
     private FileType fileType;
 
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileLock fileLock;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="file", orphanRemoval = true)
     private List<FileStatus> history;
+
+
 
     public FileLock getFileLock() {
         return fileLock;
@@ -60,9 +64,6 @@ public class File {
     }
 
     public List<FileStatus> getHistory() {
-        if (history == null) {
-            return new ArrayList<FileStatus>();
-        }
         return history;
     }
 

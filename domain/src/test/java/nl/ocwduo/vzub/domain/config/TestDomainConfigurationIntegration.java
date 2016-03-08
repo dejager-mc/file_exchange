@@ -31,8 +31,8 @@ public class TestDomainConfigurationIntegration {
     @Bean
     public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
-        builder.setType(EmbeddedDatabaseType.HSQL);//.addScripts("create-db.sql", "test-data.sql");
-        return  builder.build();
+        builder.setType(EmbeddedDatabaseType.HSQL);
+        return builder.build();
     }
 
     @Bean
@@ -40,22 +40,20 @@ public class TestDomainConfigurationIntegration {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setGenerateDdl(true);
 
-        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setPersistenceUnitName("vzubPersistenceUnit");
-        factory.setJpaVendorAdapter(vendorAdapter);
-        factory.setPackagesToScan("nl.ocwduo.vzub.domain");
-        factory.setDataSource(dataSource());
-        factory.afterPropertiesSet();
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setPersistenceUnitName("vzubPersistenceUnit");
+        factoryBean.setJpaVendorAdapter(vendorAdapter);
+        factoryBean.setPackagesToScan("nl.ocwduo.vzub.domain");
+        factoryBean.setDataSource(dataSource());
+        factoryBean.afterPropertiesSet();
 
         final Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
-        hibernateProperties.setProperty("hibernate.format_sql", "true");
 
-        factory.setJpaProperties(hibernateProperties);
+        factoryBean.setJpaProperties(hibernateProperties);
 
-        return factory.getObject();
+        return factoryBean.getObject();
     }
 
     @Bean

@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 public class FileStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "File_Status_ID")
     private Long id;
     @Column(length = 30)
     @NotNull
@@ -20,6 +21,17 @@ public class FileStatus {
     @Column(length = 20)
     @NotNull
     private Long moment;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "File_ID")
+    private File file;
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
 
     public long getId() {
         return id;

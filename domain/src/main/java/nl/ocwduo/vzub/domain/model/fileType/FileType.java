@@ -20,6 +20,7 @@ public class FileType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "File_Type_ID")
     private Long id;
 
     @NotNull
@@ -46,13 +47,15 @@ public class FileType {
     @NotNull
     private FileKind fileKind;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.REFRESH, mappedBy="fileType")
     private List<File> files;
 
+
+    public Long getId() {
+        return id;
+    }
+
     public List<File> getFiles() {
-        if (files == null) {
-            return new ArrayList<File>();
-        }
         return files;
     }
 

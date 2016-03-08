@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Machiel de Jager on 26-2-2016.
  */
-public interface FileTypeDao extends JpaRepository<FileType, String> {
-
+public interface FileTypeDao extends JpaRepository<FileType, Long> {
+    FileType findByName(String name);
 }
