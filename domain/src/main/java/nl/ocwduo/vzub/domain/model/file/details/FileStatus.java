@@ -14,25 +14,12 @@ public class FileStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @ManyToOne
-    private File file;
-
     @Column(length = 30)
     @NotNull
     private String status;
     @Column(length = 20)
     @NotNull
     private Long moment;
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public long getId() {
         return id;

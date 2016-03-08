@@ -19,11 +19,6 @@ public class FileLock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @OneToOne
-    private File file;
-
     @Column(length = 20)
     @NotNull
     private Long lockMoment;
@@ -33,14 +28,6 @@ public class FileLock {
     @NotNull
     @Column(length = 50)
     private String lockerId;    // welke machine / thread de lock heeft gelegt
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public Long getId() {
         return id;

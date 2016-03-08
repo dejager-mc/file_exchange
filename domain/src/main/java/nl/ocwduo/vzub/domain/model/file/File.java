@@ -7,6 +7,7 @@ import nl.ocwduo.vzub.domain.model.fileType.FileType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,10 +26,10 @@ public class File {
     private FileSpecs fileSpecs;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileType fileType;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileLock fileLock;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
@@ -59,6 +60,9 @@ public class File {
     }
 
     public List<FileStatus> getHistory() {
+        if (history == null) {
+            return new ArrayList<FileStatus>();
+        }
         return history;
     }
 

@@ -50,6 +50,8 @@ public class TestDomainConfigurationIntegration {
         final Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.format_sql", "true");
 
         factory.setJpaProperties(hibernateProperties);
 

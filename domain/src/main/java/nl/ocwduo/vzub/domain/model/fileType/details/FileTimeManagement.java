@@ -15,25 +15,12 @@ public class FileTimeManagement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    @NotNull
-    private FileType fileType;
-
     @Column(length = 4)
     private int keepFileForDays;
     @Column(length = 4)
     private int keepFileAfterDownloadingForDays;
     @Column(length = 4)
     private int waitForSomethingForDays;
-
-    public FileType getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(FileType fileType) {
-        this.fileType = fileType;
-    }
 
     public Long getId() {
         return id;

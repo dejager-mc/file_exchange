@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class GftKanaalDaoTestIntegration extends testMain {
 
-    @Autowired
-    private GftKanaalDao gftKanaalDao;
-
-    @Test
-    @Transactional
-    public void testOphalenBestaandKanaal() {
-        int size = gftKanaalDao.findAll().size();
-        System.out.println("Size bestaande kanalen: " + size);
-    }
+//    @Autowired
+//    private GftKanaalDao gftKanaalDao;
+//
+//    @Test
+//    @Transactional
+//    public void testOphalenBestaandKanaal() {
+//        int size = gftKanaalDao.findAll().size();
+//        System.out.println("Size bestaande kanalen: " + size);
+//    }
 }

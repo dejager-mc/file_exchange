@@ -19,11 +19,6 @@ public class FileSpecs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotNull
-    @OneToOne
-    private File file;
-
     @Column(length = 255)
     @NotNull
     private String fileName;
@@ -33,14 +28,6 @@ public class FileSpecs {
     @Column(length = 20)
     @NotNull
     private Long fileSize;
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
 
     public String getFileName() {
         return fileName;

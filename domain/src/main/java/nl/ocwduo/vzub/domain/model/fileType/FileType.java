@@ -8,18 +8,22 @@ import nl.ocwduo.vzub.domain.model.fileType.enums.FileKind;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Machiel de Jager on 3-3-2016.
  */
 @Entity
-@Table(name = "File_Type_Configuration")
+@Table(name = "File_Type")
 public class FileType {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotNull
-//    @UniqueConstraint()
+    @Column(length = 20,unique = true)
     private String name;
 
     @Column(length = 500)
@@ -30,27 +34,30 @@ public class FileType {
 
     // bevat alle wachttijden etc.
     @NotNull
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileTimeManagement fileTimeManagement;
     // in geval van customerfile
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private GftKanaal gftKanaal;
     // in geval van backoffice file
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private EmailNotification emailNotification;
     // onderscheidend vermogen: backoffice of customer file
     @NotNull
     private FileKind fileKind;
 
-    @OneToMany
-    private List<File> file;
+    @OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    private List<File> files;
 
-    public List<File> getFile() {
-        return file;
+    public List<File> getFiles() {
+        if (files == null) {
+            return new ArrayList<File>();
+        }
+        return files;
     }
 
-    public void setFile(List<File> file) {
-        this.file = file;
+    public void setFiles(List<File> files) {
+        this.files = files;
     }
 
     public String getDiscription() {

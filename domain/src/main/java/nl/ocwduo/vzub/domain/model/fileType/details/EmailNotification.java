@@ -15,11 +15,6 @@ public class EmailNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    @NotNull
-    private FileType fileType;
-
     @Email
     @Column(length = 512)
     private String fromEmailAddress;
@@ -29,14 +24,6 @@ public class EmailNotification {
     @Column(length = 10240)
     @NotNull
     private String content;
-
-    public FileType getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(FileType fileType) {
-        this.fileType = fileType;
-    }
 
     public String getContent() {
         return content;
