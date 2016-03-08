@@ -5,7 +5,9 @@
       <driver-ref>db2.jtopen</driver-ref>
       <jdbc-driver>com.ibm.as400.access.AS400JDBCDriver</jdbc-driver>
       <jdbc-url>jdbc:as400://duo400ep.duo.local:446</jdbc-url>
-      <libraries />
+      <explain-plan-config>
+        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
+      </explain-plan-config>
     </data-source>
   </component>
 </project>

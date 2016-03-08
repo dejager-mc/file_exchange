@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.rest;
 
-import nl.ocwduo.vzub.domain.model.file.CustomerFile;
+import nl.ocwduo.vzub.domain.model.file.File;
 import nl.ocwduo.vzub.service.CustomerFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,11 +24,11 @@ public class RestCustomerFileController {
     }
 
     @ResponseBody
-    @RequestMapping("/customer/*/{fileid}")
-    public ResponseEntity<CustomerFile> getCustomerFile(@PathVariable("fileid") long fileId) {
-        CustomerFile file = customerFileService.findFileById(fileId);
+    @RequestMapping("/customer/*/{file_id}")
+    public ResponseEntity<File> getCustomerFile(@PathVariable("file_id") long fileId) {
+        File file = customerFileService.findFileById(fileId);
         if (file != null) {
-            return new ResponseEntity<CustomerFile>(file, HttpStatus.OK);
+            return new ResponseEntity<File>(file, HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

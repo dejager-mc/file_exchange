@@ -1,7 +1,7 @@
 package nl.ocwduo.vzub.service;
 
-import nl.ocwduo.vzub.domain.dao.file.CustomerFileDao;
-import nl.ocwduo.vzub.domain.model.file.CustomerFile;
+import nl.ocwduo.vzub.domain.dao.file.FileDao;
+import nl.ocwduo.vzub.domain.model.file.File;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -10,18 +10,18 @@ import java.util.List;
  * Created by Machiel de Jager on 26-2-2016.
  */
 public class CustomerFileService {
-    private CustomerFileDao customerFileDao;
+    private FileDao fileDao;
 
     @Autowired
-    public CustomerFileService(CustomerFileDao customerFileDao) {
-        this.customerFileDao = customerFileDao;
+    public CustomerFileService(FileDao fileDao) {
+        this.fileDao = fileDao;
     }
 
-    public CustomerFile findFileById(Long id) {
-        return customerFileDao.findOne(id);
+    public File findFileById(Long id) {
+        return fileDao.findOne(id);
     }
 
-    public List<CustomerFile> findFilesForUser(String userId) {
-        return customerFileDao.findAll();
+    public List<File> findFilesForUser(String userId) {
+        return fileDao.findAll();
     }
 }
