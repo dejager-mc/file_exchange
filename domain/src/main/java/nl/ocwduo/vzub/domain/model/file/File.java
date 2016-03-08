@@ -3,7 +3,7 @@ package nl.ocwduo.vzub.domain.model.file;
 import nl.ocwduo.vzub.domain.model.file.details.FileLock;
 import nl.ocwduo.vzub.domain.model.file.details.FileSpecs;
 import nl.ocwduo.vzub.domain.model.file.details.FileStatus;
-import nl.ocwduo.vzub.domain.model.fileType.FileTypeConfiguration;
+import nl.ocwduo.vzub.domain.model.fileType.FileType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +26,7 @@ public class File {
 
     @NotNull
     @ManyToOne
-    private FileTypeConfiguration fileTypeConfiguration;
+    private FileType fileType;
 
     @OneToOne
     private FileLock fileLock;
@@ -50,12 +50,12 @@ public class File {
         this.fileSpecs = fileSpecs;
     }
 
-    public FileTypeConfiguration getFileTypeConfiguration() {
-        return fileTypeConfiguration;
+    public FileType getFileType() {
+        return fileType;
     }
 
-    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
-        this.fileTypeConfiguration = fileTypeConfiguration;
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
     }
 
     public List<FileStatus> getHistory() {

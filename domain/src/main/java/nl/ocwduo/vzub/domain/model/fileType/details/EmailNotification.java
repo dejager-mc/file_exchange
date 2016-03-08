@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.model.fileType.details;
 
-import nl.ocwduo.vzub.domain.model.fileType.FileTypeConfiguration;
+import nl.ocwduo.vzub.domain.model.fileType.FileType;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -18,7 +18,7 @@ public class EmailNotification {
 
     @OneToOne
     @NotNull
-    private FileTypeConfiguration fileTypeConfiguration;
+    private FileType fileType;
 
     @Email
     @Column(length = 512)
@@ -30,12 +30,12 @@ public class EmailNotification {
     @NotNull
     private String content;
 
-    public FileTypeConfiguration getFileTypeConfiguration() {
-        return fileTypeConfiguration;
+    public FileType getFileType() {
+        return fileType;
     }
 
-    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
-        this.fileTypeConfiguration = fileTypeConfiguration;
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
     }
 
     public String getContent() {

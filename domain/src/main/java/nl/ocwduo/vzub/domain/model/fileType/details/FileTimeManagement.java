@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.model.fileType.details;
 
-import nl.ocwduo.vzub.domain.model.fileType.FileTypeConfiguration;
+import nl.ocwduo.vzub.domain.model.fileType.FileType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,7 +18,7 @@ public class FileTimeManagement {
 
     @OneToOne
     @NotNull
-    private FileTypeConfiguration fileTypeConfiguration;
+    private FileType fileType;
 
     @Column(length = 4)
     private int keepFileForDays;
@@ -27,12 +27,12 @@ public class FileTimeManagement {
     @Column(length = 4)
     private int waitForSomethingForDays;
 
-    public FileTypeConfiguration getFileTypeConfiguration() {
-        return fileTypeConfiguration;
+    public FileType getFileType() {
+        return fileType;
     }
 
-    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
-        this.fileTypeConfiguration = fileTypeConfiguration;
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
     }
 
     public Long getId() {

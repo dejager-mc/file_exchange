@@ -15,7 +15,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "File_Type_Configuration")
-public class FileTypeConfiguration {
+public class FileType {
 
     @Id
     @NotNull

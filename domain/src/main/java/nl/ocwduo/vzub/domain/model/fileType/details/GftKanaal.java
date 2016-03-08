@@ -1,6 +1,6 @@
 package nl.ocwduo.vzub.domain.model.fileType.details;
 
-import nl.ocwduo.vzub.domain.model.fileType.FileTypeConfiguration;
+import nl.ocwduo.vzub.domain.model.fileType.FileType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,18 +18,18 @@ public class GftKanaal {
 
     @OneToOne
     @NotNull
-    private FileTypeConfiguration fileTypeConfiguration;
+    private FileType fileType;
 
     @Column(length = 50)
     @NotNull
     private String kanaalNaam;
 
-    public FileTypeConfiguration getFileTypeConfiguration() {
-        return fileTypeConfiguration;
+    public FileType getFileType() {
+        return fileType;
     }
 
-    public void setFileTypeConfiguration(FileTypeConfiguration fileTypeConfiguration) {
-        this.fileTypeConfiguration = fileTypeConfiguration;
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
     }
 
     public Long getId() {
