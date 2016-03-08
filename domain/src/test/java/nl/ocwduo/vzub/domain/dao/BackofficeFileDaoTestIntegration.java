@@ -1,6 +1,7 @@
 package nl.ocwduo.vzub.domain.dao;
 
 import nl.ocwduo.vzub.domain.dao.file.FileDao;
+import nl.ocwduo.vzub.domain.dao.fileType.fileTypeDaoiets;
 import nl.ocwduo.vzub.domain.main.testMain;
 import nl.ocwduo.vzub.domain.model.file.File;
 import nl.ocwduo.vzub.domain.model.file.details.FileSpecs;
@@ -29,7 +30,7 @@ public class BackofficeFileDaoTestIntegration extends testMain {
     @Autowired
     private FileDao fileDao;
     @Autowired
-    private nl.ocwduo.vzub.domain.dao.fileType.fileTypeDao fileTypeDao;
+    private fileTypeDaoiets fileTypeDao;
 
     @After
     public void clearDataFromDatabase() {

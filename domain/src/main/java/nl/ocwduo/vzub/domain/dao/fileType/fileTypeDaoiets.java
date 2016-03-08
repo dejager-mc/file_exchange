@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Machiel de Jager on 26-2-2016.
  */
-public interface fileTypeDao extends JpaRepository<FileType, String> {
+public interface fileTypeDaoiets extends JpaRepository<FileType, String> {
 
 }
