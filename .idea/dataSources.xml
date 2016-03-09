@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2061728030">
+  <component name="DataSourceManagerImpl" format="xml" hash="3374043849">
     <data-source source="LOCAL" name="DB2 AS400" uuid="584458d2-1528-421c-aac2-d9b42d4b5ce5">
       <driver-ref>db2.jtopen</driver-ref>
       <jdbc-driver>com.ibm.as400.access.AS400JDBCDriver</jdbc-driver>
       <jdbc-url>jdbc:as400://duo400ep.duo.local:446</jdbc-url>
-      <explain-plan-config>
-        <provider>com.intellij.database.plan.ExplainPlanProvider.NullExplainPlanProvider</provider>
-      </explain-plan-config>
+      <libraries />
     </data-source>
   </component>
 </project>

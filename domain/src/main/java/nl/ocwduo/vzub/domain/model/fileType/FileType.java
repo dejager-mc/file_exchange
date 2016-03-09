@@ -1,6 +1,5 @@
 package nl.ocwduo.vzub.domain.model.fileType;
 
-import nl.ocwduo.vzub.domain.model.file.File;
 import nl.ocwduo.vzub.domain.model.fileType.details.EmailNotification;
 import nl.ocwduo.vzub.domain.model.fileType.details.FileTimeManagement;
 import nl.ocwduo.vzub.domain.model.fileType.details.GftKanaal;
@@ -8,8 +7,6 @@ import nl.ocwduo.vzub.domain.model.fileType.enums.FileKind;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Machiel de Jager on 3-3-2016.

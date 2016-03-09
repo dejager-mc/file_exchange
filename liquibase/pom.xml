@@ -10,20 +10,35 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>liquibase</artifactId>
-
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
-                    <outputChangeLogFile>src/resources/db.changelog.vzub.xml</outputChangeLogFile>
-                    <changeLogFile>src/resources/master.changelog.xml</changeLogFile>
-                    <username>${database.username}</username>
-                    <password>${database.password}</password>
-                    <defaultSchemaName>${database.schema}</defaultSchemaName>
-                    <url>jdbc:as400://172.30.253.31/${database.schema};prompt=false;dateformat=iso;</url>
+                    <outputChangeLogFile>src/test/resources/db.changelog.vzub.xml</outputChangeLogFile>
+                    <changeLogFile>src/test/resources/master.changelog.xml</changeLogFile>
+                    <username>in434jag</username>
+                    <password>wW!!201603</password>
+                    <defaultSchemaName>JIDTAONT</defaultSchemaName>
+                    <url>jdbc:as400://172.30.253.31/JIDTAONT;prompt=false;dateformat=iso;</url>
+                    <!--<username>${database.username}</username>-->
+                    <!--<password>${database.password}</password>-->
+                    <!--<defaultSchemaName>${database.schema}</defaultSchemaName>-->
+                    <!--<url>jdbc:as400://172.30.253.31/${database.schema};prompt=false;dateformat=iso;</url>-->
                     <driver>com.ibm.as400.access.AS400JDBCDriver</driver>
                 </configuration>
                 <dependencies>
@@ -46,12 +61,19 @@
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <id>my-repo1</id>
-            <name>your custom repo</name>
-            <url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
-        </repository>
-    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>nl.ocwduo.vzub</groupId>
+            <artifactId>domain</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.11.Final</version>
+        </dependency>
+
+
+    </dependencies>
+
 
 </project>
