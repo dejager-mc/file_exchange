@@ -15,7 +15,7 @@
         <module>batch</module>
         <module>rest</module>
         <module>liquibase</module>
-        <module>gui-xldeploy</module>
+        <module>rest-xldeploy</module>
     </modules>
     <packaging>pom</packaging>
 

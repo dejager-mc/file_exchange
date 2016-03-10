@@ -16,21 +16,9 @@ public class GftKanaal {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne
-    @NotNull
-    private FileType fileType;
-
     @Column(length = 50)
     @NotNull
     private String kanaalNaam;
-
-    public FileType getFileType() {
-        return fileType;
-    }
-
-    public void setFileType(FileType fileType) {
-        this.fileType = fileType;
-    }
 
     public Long getId() {
         return id;

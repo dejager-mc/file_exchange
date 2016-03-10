@@ -35,7 +35,7 @@ public class FileType {
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileTimeManagement fileTimeManagement;
     // in geval van customerfile
-    @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     private GftKanaal gftKanaal;
     // in geval van backoffice file
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)

@@ -1,4 +1,4 @@
-package nl.ocwduo.liquibase;
+package nl.ocwduo.vzub.liquibase;
 
 import nl.ocwduo.vzub.domain.model.file.File;
 import nl.ocwduo.vzub.domain.model.file.details.FileLock;

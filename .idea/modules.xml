@@ -5,10 +5,10 @@
       <module fileurl="file://$PROJECT_DIR$/batch/batch.iml" filepath="$PROJECT_DIR$/batch/batch.iml" />
       <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
       <module fileurl="file://$PROJECT_DIR$/fileshare/fileshare.iml" filepath="$PROJECT_DIR$/fileshare/fileshare.iml" />
-      <module fileurl="file://$PROJECT_DIR$/gui-xldeploy/gui-xldeploy.iml" filepath="$PROJECT_DIR$/gui-xldeploy/gui-xldeploy.iml" />
       <module fileurl="file://$PROJECT_DIR$/liquibase/liquibase.iml" filepath="$PROJECT_DIR$/liquibase/liquibase.iml" />
       <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest/rest.iml" filepath="$PROJECT_DIR$/rest/rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-xldeploy/rest-xldeploy.iml" filepath="$PROJECT_DIR$/rest-xldeploy/rest-xldeploy.iml" />
       <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
       <module fileurl="file://$PROJECT_DIR$/zkl-client/zkl-client.iml" filepath="$PROJECT_DIR$/zkl-client/zkl-client.iml" />
     </modules>

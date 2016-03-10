@@ -82,6 +82,7 @@
       <module name="liquibase" target="1.8" />
       <module name="parent" target="1.8" />
       <module name="rest" target="1.8" />
+      <module name="rest-xldeploy" target="1.8" />
       <module name="service" target="1.8" />
       <module name="zkl-client" target="1.8" />
     </bytecodeTargetLevel>

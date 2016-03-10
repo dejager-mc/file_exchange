@@ -32,8 +32,8 @@ public class File {
     private FileLock fileLock;
 
     @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="JOINED_FILE_ID")
     private List<FileStatus> history;
-
 
 
     public FileLock getFileLock() {
