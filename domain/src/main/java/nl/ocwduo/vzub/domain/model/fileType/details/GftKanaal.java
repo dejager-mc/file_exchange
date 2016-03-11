@@ -9,14 +9,15 @@ import javax.validation.constraints.NotNull;
  * Created by Machiel de Jager on 20-2-2016.
  */
 @Entity
-@Table(name = "GFT_Kanaal")
+@Table(name = "GFT_KANAAL")
 public class GftKanaal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "GFT_KANAAL_ID")
     private Long id;
 
-    @Column(length = 50)
+    @Column(name = "KANAAL_NAAM", length = 50)
     @NotNull
     private String kanaalNaam;
 

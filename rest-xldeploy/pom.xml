@@ -13,7 +13,11 @@
     <artifactId>rest-xldeploy</artifactId>
 
     <dependencies>
-
+        <dependency>
+            <groupId>nl.ocwduo.vzub</groupId>
+            <artifactId>liquibase</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -27,12 +31,12 @@
                 </configuration>
             </plugin>
             <plugin>
-                <!--<groupId>com.xebialabs.xldeploy</groupId>-->
-                <!--<artifactId>xldeploy-maven-plugin</artifactId>-->
-                <!--<version>5.1.0</version>-->
-                <groupId>com.xebialabs.deployit</groupId>
-                <artifactId>maven-deployit-plugin</artifactId>
-                <version>4.5.2</version>
+                <groupId>com.xebialabs.xldeploy</groupId>
+                <artifactId>xldeploy-maven-plugin</artifactId>
+                <version>5.1.0</version>
+                <!--<groupId>com.xebialabs.deployit</groupId>-->
+                <!--<artifactId>maven-deployit-plugin</artifactId>-->
+                <!--<version>4.5.2</version>-->
                 <configuration>
                     <socketTimeout>30000</socketTimeout>
 
@@ -53,70 +57,72 @@
                                  location="${basedir}/../rest/target/rest.war"/>
 
                         <!-- database -->
-                        <duo.JbossdmDb2ServerDataSourceSpec
-                                name="kadta">
-                            <jndiName>java:/jdbc/kadta</jndiName>
-                            <username>{{database.kadta.username}}</username>
-                            <password>{{database.kadta.password}}</password>
-                            <maxPoolSize>10</maxPoolSize>
-                            <connectionUrl>{{database.kadta.connectionUrl}}</connectionUrl>
-                        </duo.JbossdmDb2ServerDataSourceSpec>
-                        <duo.JbossdmDb2ServerDataSourceSpec
-                                name="jidta">
-                            <jndiName>java:/jdbc/xadta</jndiName>
-                            <username>{{database.xadta.username}}</username>
-                            <password>{{database.xadta.password}}</password>
-                            <maxPoolSize>10</maxPoolSize>
-                            <connectionUrl>{{database.xadta.connectionUrl}}</connectionUrl>
-                        </duo.JbossdmDb2ServerDataSourceSpec>
-                        <duo.JbossdmDb2ServerDataSourceSpec
-                                name="jjdta">
-                            <jndiName>java:/jdbc/jjdta</jndiName>
-                            <username>{{database.jjdta.username}}</username>
-                            <password>{{database.jjdta.password}}</password>
-                            <maxPoolSize>10</maxPoolSize>
-                            <connectionUrl>{{database.jjdta.connectionUrl}}</connectionUrl>
-                        </duo.JbossdmDb2ServerDataSourceSpec>
-                        <duo.JbossPerformanceLoggingConfigSpec name="perflog-config-xa">
-                            <applicationCode>xa</applicationCode>
-                        </duo.JbossPerformanceLoggingConfigSpec>
-                        <duo.JbossdmSqlServerDataSourceSpec name="perfmon">
-                            <jndiName>java:/jdbc/perfmon</jndiName>
-                            <username>{{database.perfmon.username}}</username>
-                            <password>{{database.perfmon.password}}</password>
-                            <maxPoolSize>10</maxPoolSize>
-                            <connectionUrl>{{database.perfmon.connectionUrl}}</connectionUrl>
-                        </duo.JbossdmSqlServerDataSourceSpec>
+                        <!--<duo.JbossdmDb2ServerDataSourceSpec-->
+                                <!--name="kadta">-->
+                            <!--<jndiName>java:/jdbc/kadta</jndiName>-->
+                            <!--<username>{{database.kadta.username}}</username>-->
+                            <!--<password>{{database.kadta.password}}</password>-->
+                            <!--<maxPoolSize>10</maxPoolSize>-->
+                            <!--<connectionUrl>{{database.kadta.connectionUrl}}</connectionUrl>-->
+                        <!--</duo.JbossdmDb2ServerDataSourceSpec>-->
+                        <duo.JbossdmDb2ServerXaDataSourceSpec name="jidta">
+                            <jndiName>java:/jdbc/nedta</jndiName>
+                            <username>{{database.jidta.username}}</username>
+                            <password>{{database.jidta.password}}</password>
+                            <xaProperties>
+                                <entry key="ServerName">{{database.jidta.hostname}}</entry>
+                                <entry key="dateFormat">iso</entry>
+                                <entry key="libraries">{{database.jidta.libraries}}</entry>
+                            </xaProperties>
+                        </duo.JbossdmDb2ServerXaDataSourceSpec>
+                        <!--<duo.JbossdmDb2ServerDataSourceSpec-->
+                                <!--name="jjdta">-->
+                            <!--<jndiName>java:/jdbc/jjdta</jndiName>-->
+                            <!--<username>{{database.jjdta.username}}</username>-->
+                            <!--<password>{{database.jjdta.password}}</password>-->
+                            <!--<maxPoolSize>10</maxPoolSize>-->
+                            <!--<connectionUrl>{{database.jjdta.connectionUrl}}</connectionUrl>-->
+                        <!--</duo.JbossdmDb2ServerDataSourceSpec>-->
+                        <!--<duo.JbossPerformanceLoggingConfigSpec name="perflog-config-xa">-->
+                            <!--<applicationCode>xa</applicationCode>-->
+                        <!--</duo.JbossPerformanceLoggingConfigSpec>-->
+                        <!--<duo.JbossdmSqlServerDataSourceSpec name="perfmon">-->
+                            <!--<jndiName>java:/jdbc/perfmon</jndiName>-->
+                            <!--<username>{{database.perfmon.username}}</username>-->
+                            <!--<password>{{database.perfmon.password}}</password>-->
+                            <!--<maxPoolSize>10</maxPoolSize>-->
+                            <!--<connectionUrl>{{database.perfmon.connectionUrl}}</connectionUrl>-->
+                        <!--</duo.JbossdmSqlServerDataSourceSpec>-->
 
                         <!-- Queue Connection Factory. -->
-                        <duo.JbossWmqQueueConnectionFactorySpec
-                                name="QCF">
-                            <jndiName>java:/jms/VZUB/QCF</jndiName>
-                            <queueManager>{{qcf.queueManager}}</queueManager>
-                            <host>{{qcf.host}}</host>
-                            <port>{{qcf.port}}</port>
-                            <channel>{{qcf.channel}}</channel>
-                            <transportType>CLIENT</transportType>
-                            <qcfUsername>{{qcf.username}}</qcfUsername>
-                            <qcfPassword>{{qcf.password}}</qcfPassword>
-                            <className>com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl</className>
-                        </duo.JbossWmqQueueConnectionFactorySpec>
+                        <!--<duo.JbossWmqQueueConnectionFactorySpec-->
+                                <!--name="QCF">-->
+                            <!--<jndiName>java:/jms/VZUB/QCF</jndiName>-->
+                            <!--<queueManager>{{qcf.queueManager}}</queueManager>-->
+                            <!--<host>{{qcf.host}}</host>-->
+                            <!--<port>{{qcf.port}}</port>-->
+                            <!--<channel>{{qcf.channel}}</channel>-->
+                            <!--<transportType>CLIENT</transportType>-->
+                            <!--<qcfUsername>{{qcf.username}}</qcfUsername>-->
+                            <!--<qcfPassword>{{qcf.password}}</qcfPassword>-->
+                            <!--<className>com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl</className>-->
+                        <!--</duo.JbossWmqQueueConnectionFactorySpec>-->
 
                         <!-- Queues -->
-                        <duo.JbossWmqQueueSpec name="{{queue.vzubInputQueue}}">
-                            <jndiName>java:/jms/XAB/inputQueue</jndiName>
-                            <baseQueueName>{{queue.xabInputQueue}}</baseQueueName>
-                            <baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>
-                        </duo.JbossWmqQueueSpec>
-                        <duo.JbossWmqQueueSpec name="{{queue.vzubOutputQueue}}">
-                            <jndiName>java:/jms/XAB/outputQueue</jndiName>
-                            <baseQueueName>{{queue.xabInputQueue}}</baseQueueName>
-                            <baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>
-                        </duo.JbossWmqQueueSpec>
+                        <!--<duo.JbossWmqQueueSpec name="{{queue.vzubInputQueue}}">-->
+                            <!--<jndiName>java:/jms/XAB/inputQueue</jndiName>-->
+                            <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
+                            <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
+                        <!--</duo.JbossWmqQueueSpec>-->
+                        <!--<duo.JbossWmqQueueSpec name="{{queue.vzubOutputQueue}}">-->
+                            <!--<jndiName>java:/jms/XAB/outputQueue</jndiName>-->
+                            <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
+                            <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
+                        <!--</duo.JbossWmqQueueSpec>-->
 
-                        <duo.JbossSystemPropertySpec name="OMGEVING">
-                            <systemPropertyValue>{{OMGEVING}}</systemPropertyValue>
-                        </duo.JbossSystemPropertySpec>
+                        <!--<duo.JbossSystemPropertySpec name="OMGEVING">-->
+                            <!--<systemPropertyValue>{{OMGEVING}}</systemPropertyValue>-->
+                        <!--</duo.JbossSystemPropertySpec>-->
                     </deployables>
                     <serverAddress>${xldeploy.server}</serverAddress>
                     <context>${xldeploy.contextroot}</context>

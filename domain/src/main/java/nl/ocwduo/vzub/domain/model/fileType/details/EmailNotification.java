@@ -10,13 +10,14 @@ import javax.validation.constraints.NotNull;
  * Created by Machiel de Jager on 21-2-2016.
  */
 @Entity
-@Table(name = "Email_Notification")
+@Table(name = "EMAIL_NOTIFICATION")
 public class EmailNotification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EMAIL_NOTIFICATION_ID")
     private Long id;
     @Email
-    @Column(length = 512)
+    @Column(name = "FROM_EMAIL_ADDRESS", length = 512)
     private String fromEmailAddress;
     @Column(length = 1024)
     @NotNull

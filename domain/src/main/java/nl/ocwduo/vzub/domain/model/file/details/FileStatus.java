@@ -1,7 +1,5 @@
 package nl.ocwduo.vzub.domain.model.file.details;
 
-import nl.ocwduo.vzub.domain.model.file.File;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -9,11 +7,11 @@ import javax.validation.constraints.NotNull;
  * Created by Machiel de Jager on 26-2-2016.
  */
 @Entity
-@Table(name = "File_Status")
+@Table(name = "FILE_STATUS")
 public class FileStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "File_Status_ID")
+    @Column(name = "FILE_STATUS_ID")
     private Long id;
     @Column(length = 30)
     @NotNull

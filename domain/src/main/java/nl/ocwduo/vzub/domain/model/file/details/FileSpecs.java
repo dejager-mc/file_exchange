@@ -13,19 +13,20 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-@Table(name = "File_Specs")
+@Table(name = "FILE_SPECS")
 public class FileSpecs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FILE_SPECS_ID")
     private Long id;
-    @Column(length = 255)
+    @Column(name = "FILE_NAME", length = 255)
     @NotNull
     private String fileName;
-    @Column(length = 1024)
+    @Column(name = "FILE_PATCH", length = 1024)
     @NotNull
     private String filePath;
-    @Column(length = 20)
+    @Column(name = "FILE_SIZE", length = 20)
     @NotNull
     private Long fileSize;
 

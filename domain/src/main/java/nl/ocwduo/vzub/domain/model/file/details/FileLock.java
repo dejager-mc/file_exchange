@@ -14,19 +14,20 @@ import javax.validation.constraints.NotNull;
     Dat kan via deze entity.
  */
 @Entity
-@Table(name = "File_Lock")
+@Table(name = "FILE_LOCK")
 public class FileLock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "FILE_LOCK_ID")
     private Long id;
-    @Column(length = 20)
+    @Column(name = "LOCK_MOMENT", length = 20)
     @NotNull
     private Long lockMoment;
-    @Column(length = 50)
+    @Column(name = "LOCKER_PROCES", length = 50)
     @NotNull
     private String lockerProces;
     @NotNull
-    @Column(length = 50)
+    @Column(name = "LOCKER_ID", length = 50)
     private String lockerId;    // welke machine / thread de lock heeft gelegt
 
     public Long getId() {

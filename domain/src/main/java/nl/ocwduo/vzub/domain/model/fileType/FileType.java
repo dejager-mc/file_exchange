@@ -12,12 +12,12 @@ import javax.validation.constraints.NotNull;
  * Created by Machiel de Jager on 3-3-2016.
  */
 @Entity
-@Table(name = "File_Type")
+@Table(name = "FILE_TYPE")
 public class FileType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "File_Type_ID")
+    @Column(name = "FILE_TYPE_ID")
     private Long id;
 
     @NotNull
@@ -27,7 +27,7 @@ public class FileType {
     @Column(length = 500)
     @NotNull
     private String discription;
-    @Column(length = 255)
+    @Column(name = "FILE_NAME_REGEXP_MATCHER", length = 255)
     private String fileNameRegExpMatcher;
 
     // bevat alle wachttijden etc.

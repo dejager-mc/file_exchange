@@ -7,178 +7,148 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-
-
-    <changeSet author="in434jag (generated)" id="1457523704723-1">
+    <changeSet author="in434jag (generated)" id="1457690225937-1">
         <createTable tableName="EMAIL_NOTIFICATION">
-            <column autoIncrement="true" name="ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_EMAIL00001_ID_00001"/>
+            <column autoIncrement="true" name="EMAIL_NOTIFICATION_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_EMAIL00001_EMAIL00001_00001"/>
             </column>
             <column name="CONTENT" type="VARCHAR(10240)"/>
-            <column name="FROMEMAILADDRESS" type="VARCHAR(512)"/>
+            <column name="FROM_EMAIL_ADDRESS" type="VARCHAR(512)"/>
             <column name="SUBJECT" type="VARCHAR(1024)"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-2">
+    <changeSet author="in434jag (generated)" id="1457690225937-2">
         <createTable tableName="FILE">
             <column autoIncrement="true" name="FILE_ID" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_FILE_ID_00001"/>
             </column>
-            <column name="FILELOCK_ID" type="BIGINT"/>
-            <column name="FILESPECS_ID" type="BIGINT"/>
+            <column name="FILELOCK_FILE_LOCK_ID" type="BIGINT"/>
+            <column name="FILESPECS_FILE_SPECS_ID" type="BIGINT"/>
             <column name="FILETYPE_FILE_TYPE_ID" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-3">
-        <createTable tableName="FILE_FILE_STATUS">
-            <column name="FILE_FILE_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-            <column name="HISTORY_FILE_STATUS_ID" type="BIGINT">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-4">
+    <changeSet author="in434jag (generated)" id="1457690225937-3">
         <createTable tableName="FILE_LOCK">
-            <column autoIncrement="true" name="ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_LOCK_ID_00001"/>
+            <column autoIncrement="true" name="FILE_LOCK_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_LOCK_FILE_00001_00001"/>
             </column>
-            <column name="LOCKMOMENT" type="BIGINT"/>
-            <column name="LOCKERID" type="VARCHAR(50)"/>
-            <column name="LOCKERPROCES" type="VARCHAR(50)"/>
+            <column name="LOCK_MOMENT" type="BIGINT"/>
+            <column name="LOCKER_ID" type="VARCHAR(50)"/>
+            <column name="LOCKER_PROCES" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-5">
+    <changeSet author="in434jag (generated)" id="1457690225937-4">
         <createTable tableName="FILE_SPECS">
-            <column autoIncrement="true" name="ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_SPECS_ID_00001"/>
+            <column autoIncrement="true" name="FILE_SPECS_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_SPECS_FILE_00001_00001"/>
             </column>
-            <column name="FILENAME" type="VARCHAR(255)"/>
-            <column name="FILEPATH" type="VARCHAR(1024)"/>
-            <column name="FILESIZE" type="BIGINT"/>
+            <column name="FILE_NAME" type="VARCHAR(255)"/>
+            <column name="FILE_PATCH" type="VARCHAR(1024)"/>
+            <column name="FILE_SIZE" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-6">
+    <changeSet author="in434jag (generated)" id="1457690225937-5">
         <createTable tableName="FILE_STATUS">
             <column autoIncrement="true" name="FILE_STATUS_ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_00002_FILE_00001_00001"/>
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_00001_FILE_00001_00001"/>
             </column>
             <column name="MOMENT" type="BIGINT"/>
             <column name="STATUS" type="VARCHAR(30)"/>
+            <column name="JOINED_FILE_ID" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-7">
+    <changeSet author="in434jag (generated)" id="1457690225937-6">
         <createTable tableName="FILE_TIME_MANAGEMENT">
-            <column autoIncrement="true" name="ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_00003_ID_00001"/>
+            <column autoIncrement="true" name="FILE_TIME_MANAGEMENT_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_00002_FILE_00001_00001"/>
             </column>
-            <column name="KEEPFILEAFTERDOWNLOADINGFORDAYS" type="INTEGER"/>
-            <column name="KEEPFILEFORDAYS" type="INTEGER"/>
-            <column name="WAITFORSOMETHINGFORDAYS" type="INTEGER"/>
+            <column name="KEEP_FILE_AFTER_DOWNLOADING_FOR_DAYS" type="INTEGER"/>
+            <column name="KEEP_FILE_FOR_DAYS" type="INTEGER"/>
+            <column name="WAIT_FOR_SOMETHING_FOR_DAYS" type="INTEGER"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-8">
+    <changeSet author="in434jag (generated)" id="1457690225937-7">
         <createTable tableName="FILE_TYPE">
             <column autoIncrement="true" name="FILE_TYPE_ID" type="BIGINT">
                 <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_FILE_TYPE_FILE_00001_00001"/>
             </column>
             <column name="DISCRIPTION" type="VARCHAR(500)"/>
             <column name="FILEKIND" type="INTEGER"/>
-            <column name="FILENAMEREGEXPMATCHER" type="VARCHAR(255)"/>
+            <column name="FILE_NAME_REGEXP_MATCHER" type="VARCHAR(255)"/>
             <column name="NAME" type="VARCHAR(20)"/>
-            <column name="EMAILNOTIFICATION_ID" type="BIGINT"/>
-            <column name="FILETIMEMANAGEMENT_ID" type="BIGINT"/>
-            <column name="GFTKANAAL_ID" type="BIGINT"/>
+            <column name="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID" type="BIGINT"/>
+            <column name="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID" type="BIGINT"/>
+            <column name="GFTKANAAL_GFT_KANAAL_ID" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-9">
+    <changeSet author="in434jag (generated)" id="1457690225937-8">
         <createTable tableName="GFT_KANAAL">
-            <column autoIncrement="true" name="ID" type="BIGINT">
-                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_GFT_KANAAL_ID_00001"/>
+            <column autoIncrement="true" name="GFT_KANAAL_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_GFT_KANAAL_GFT_K00001_00001"/>
             </column>
-            <column name="KANAALNAAM" type="VARCHAR(50)"/>
-            <column name="FILETYPE_FILE_TYPE_ID" type="BIGINT"/>
+            <column name="KANAAL_NAAM" type="VARCHAR(50)"/>
         </createTable>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-10">
-        <addUniqueConstraint columnNames="HISTORY_FILE_STATUS_ID" constraintName="UK_DOORVTP56W2CO1DNULT5328LO" tableName="FILE_FILE_STATUS"/>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-11">
-        <createIndex indexName="FK_4XOPKMHI8MA6SHT94V9QX17FU" tableName="FILE_TYPE">
-            <column name="EMAILNOTIFICATION_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-12">
-        <createIndex indexName="FK_8Y6BYJ7Y04HSY8TBLS9AGL09B" tableName="FILE_TYPE">
-            <column name="FILETIMEMANAGEMENT_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-13">
-        <createIndex indexName="FK_9JOJ57ESOVGAUDI601POJLI48" tableName="FILE_FILE_STATUS">
-            <column name="FILE_FILE_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-14">
-        <createIndex indexName="FK_A4XCIPQJBE9KUDFS2PM3IA69E" tableName="FILE">
-            <column name="FILESPECS_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-15">
-        <createIndex indexName="FK_DOORVTP56W2CO1DNULT5328LO" tableName="FILE_FILE_STATUS">
-            <column name="HISTORY_FILE_STATUS_ID"/>
-        </createIndex>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-16">
-        <createIndex indexName="FK_H3XOS72YCQR59AI03O7NILHVH" tableName="FILE">
+    <changeSet author="in434jag (generated)" id="1457690225937-9">
+        <createIndex indexName="FK_1JCOVDVT8R3FLQFLRSEE3C99X" tableName="FILE">
             <column name="FILETYPE_FILE_TYPE_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-17">
-        <createIndex indexName="FK_HTUXLGSUG8EQOJEK3R602DLKW" tableName="FILE_TYPE">
-            <column name="GFTKANAAL_ID"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-10">
+        <createIndex indexName="FK_43QWE7DY0RYGW4LWBMTVN0V8H" tableName="FILE_TYPE">
+            <column name="GFTKANAAL_GFT_KANAAL_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-18">
-        <createIndex indexName="FK_L0U84LJ3GL20I9HAT3PCWVUM3" tableName="FILE">
-            <column name="FILELOCK_ID"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-11">
+        <createIndex indexName="FK_7FQLQEHBBLXTAINT91BF9IUXI" tableName="FILE">
+            <column name="FILESPECS_FILE_SPECS_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-19">
-        <createIndex indexName="FK_N4K51V9SES94553HOPYMBADQJ" tableName="GFT_KANAAL">
-            <column name="FILETYPE_FILE_TYPE_ID"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-12">
+        <createIndex indexName="FK_DOHQX3M2WPGGV5K977WES6NS4" tableName="FILE_TYPE">
+            <column name="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID"/>
         </createIndex>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-20">
-        <createIndex indexName="UK_D47L7M0WTUTGHWJLFX5S1PEMP" tableName="FILE_TYPE" unique="true">
+    <changeSet author="in434jag (generated)" id="1457690225937-13">
+        <createIndex indexName="FK_MY1Y8WKAODSREBXY78T9PPGHH" tableName="FILE_STATUS">
+            <column name="JOINED_FILE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="in434jag (generated)" id="1457690225937-14">
+        <createIndex indexName="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" tableName="FILE_TYPE">
+            <column name="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="in434jag (generated)" id="1457690225937-15">
+        <createIndex indexName="FK_VSYYQP5ULSMVTRW93DEK5LT4" tableName="FILE">
+            <column name="FILELOCK_FILE_LOCK_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="in434jag (generated)" id="1457690225937-16">
+        <createIndex indexName="UK_QO086V9SRQX86FPF4KCRYL5SE" tableName="FILE_TYPE" unique="true">
             <column name="NAME"/>
         </createIndex>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-21">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE_TYPE" constraintName="FK_4XOPKMHI8MA6SHT94V9QX17FU" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="EMAIL_NOTIFICATION"/>
+    <!-- zelf de baseColumnNames toegevoegd = foreign key names-->
+    <changeSet author="in434jag (generated)" id="1457690225937-17">
+        <addForeignKeyConstraint baseColumnNames="fileType_FILE_TYPE_ID" baseTableName="FILE" constraintName="FK_1JCOVDVT8R3FLQFLRSEE3C99X" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TYPE_ID" referencedTableName="FILE_TYPE"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-22">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE_TYPE" constraintName="FK_8Y6BYJ7Y04HSY8TBLS9AGL09B" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="FILE_TIME_MANAGEMENT"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-18">
+        <addForeignKeyConstraint baseColumnNames="gftKanaal_GFT_KANAAL_ID" baseTableName="FILE_TYPE" constraintName="FK_43QWE7DY0RYGW4LWBMTVN0V8H" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="GFT_KANAAL_ID" referencedTableName="GFT_KANAAL"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-23">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE_FILE_STATUS" constraintName="FK_9JOJ57ESOVGAUDI601POJLI48" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_ID" referencedTableName="FILE"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-19">
+        <addForeignKeyConstraint baseColumnNames="fileSpecs_FILE_SPECS_ID" baseTableName="FILE" constraintName="FK_7FQLQEHBBLXTAINT91BF9IUXI" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_SPECS_ID" referencedTableName="FILE_SPECS"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-24">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE" constraintName="FK_A4XCIPQJBE9KUDFS2PM3IA69E" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="FILE_SPECS"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-20">
+        <addForeignKeyConstraint baseColumnNames="fileTimeManagement_FILE_TIME_MANAGEMENT_ID" baseTableName="FILE_TYPE" constraintName="FK_DOHQX3M2WPGGV5K977WES6NS4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TIME_MANAGEMENT_ID" referencedTableName="FILE_TIME_MANAGEMENT"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-25">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE_FILE_STATUS" constraintName="FK_DOORVTP56W2CO1DNULT5328LO" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_STATUS_ID" referencedTableName="FILE_STATUS"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-21">
+        <addForeignKeyConstraint baseColumnNames="JOINED_FILE_ID" baseTableName="FILE_STATUS" constraintName="FK_MY1Y8WKAODSREBXY78T9PPGHH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_ID" referencedTableName="FILE"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-26">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE" constraintName="FK_H3XOS72YCQR59AI03O7NILHVH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TYPE_ID" referencedTableName="FILE_TYPE"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-22">
+        <addForeignKeyConstraint baseColumnNames="emailNotification_EMAIL_NOTIFICATION_ID" baseTableName="FILE_TYPE" constraintName="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="EMAIL_NOTIFICATION_ID" referencedTableName="EMAIL_NOTIFICATION"/>
     </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-27">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE_TYPE" constraintName="FK_HTUXLGSUG8EQOJEK3R602DLKW" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="GFT_KANAAL"/>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-28">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="FILE" constraintName="FK_L0U84LJ3GL20I9HAT3PCWVUM3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ID" referencedTableName="FILE_LOCK"/>
-    </changeSet>
-    <changeSet author="in434jag (generated)" id="1457523704723-29">
-        <addForeignKeyConstraint baseColumnNames="" baseTableName="GFT_KANAAL" constraintName="FK_N4K51V9SES94553HOPYMBADQJ" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TYPE_ID" referencedTableName="FILE_TYPE"/>
+    <changeSet author="in434jag (generated)" id="1457690225937-23">
+        <addForeignKeyConstraint baseColumnNames="fileLock_FILE_LOCK_ID" baseTableName="FILE" constraintName="FK_VSYYQP5ULSMVTRW93DEK5LT4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_LOCK_ID" referencedTableName="FILE_LOCK"/>
     </changeSet>
 </databaseChangeLog>

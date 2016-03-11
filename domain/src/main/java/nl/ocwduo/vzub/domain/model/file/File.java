@@ -14,11 +14,11 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "File")
+@Table(name = "FILE")
 public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "File_ID")
+    @Column(name = "FILE_ID")
     private Long id;
 
     @NotNull
