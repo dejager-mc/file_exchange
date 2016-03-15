@@ -1,4 +1,4 @@
-package nl.ocwduo.vzub.domain.fileshare;
+package nl.ocwduo.vzub.fileshare;
 
 import com.jcraft.jsch.UserInfo;
 import org.apache.commons.vfs2.*;
