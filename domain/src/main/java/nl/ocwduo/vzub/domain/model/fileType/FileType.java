@@ -44,6 +44,8 @@ public class FileType {
     @NotNull
     private FileKind fileKind;
 
+    private int organisatieId;
+
 
     public Long getId() {
         return id;

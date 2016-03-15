@@ -1,14 +1,15 @@
 package nl.ocwduo.vzub.domain.fileshare;
 
-import java.io.File;
-
 import com.jcraft.jsch.UserInfo;
-import org.apache.commons.vfs2.FileObject;
-import org.apache.commons.vfs2.FileSystemException;
-import org.apache.commons.vfs2.FileSystemOptions;
-import org.apache.commons.vfs2.Selectors;
+import org.apache.commons.vfs2.*;
+import org.apache.commons.vfs2.auth.StaticUserAuthenticator;
+import org.apache.commons.vfs2.impl.DefaultFileSystemConfigBuilder;
 import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
+import org.omg.SendingContext.RunTime;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * The class SFTPUtil containing uploading, downloading, checking if file exists
@@ -16,41 +17,90 @@ import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
  * Library
  *
  * @author Ashok
- *
  */
 public class vfsExample {
 
     public static void main(String[] args) {
-        String hostName = "PutYourHostNameHere";
-        String username = "PutYourUserNameForHostHere";
-        String password = "PutYourPasswordForHostHere";
+        String hostName = "172.30.248.31:22";
+        String username = "zpuserwas";
+        String password = "caramelchew";
 
-        String localFilePath = "C:\\FakePath\\FakeFile.txt";
-        String remoteFilePath = "/FakeRemotePath/FakeRemoteFile.txt";
-        String remoteTempFilePath = "/FakeRemoteTempPath/FakeRemoteTempFile.txt";
+        String localFilePath = "D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\fileshare\\readme.txt";
+        String remoteFilePath = "bestandsuitwisseling/bestanden/FakeRemoteFile.txt";
+        String remoteTempFilePath = "bestandsuitwisseling/bestanden/FakeRemoteTempFile.txt";
 
-        upload(hostName, username, password, localFilePath, remoteFilePath);
-        exist(hostName, username, password, remoteFilePath);
-        download(hostName, username, password, localFilePath,remoteFilePath);
-        move(hostName, username, password, remoteFilePath, remoteTempFilePath);
-        delete(hostName, username, password, remoteFilePath);
+        try {
+            init(hostName, username, password, localFilePath, remoteFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        upload(hostName, username, password, localFilePath, remoteFilePath);
+//        exist(hostName, username, password, remoteFilePath);
+//        download(hostName, username, password, localFilePath,remoteFilePath);
+//        move(hostName, username, password, remoteFilePath, remoteTempFilePath);
+//        delete(hostName, username, password, remoteFilePath);
+    }
+
+    public static void init(String hostName, String username, String passphraseRsaKey, String localFilePath, String remoteFilePath) throws IOException {
+        try {
+            StaticUserAuthenticator auth = new StaticUserAuthenticator(hostName, username, passphraseRsaKey);
+
+            File fileRsaKey = new File("D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\fileshare\\id_dsa_zpuserwas_fat.ppk");
+
+            if (fileRsaKey == null || !fileRsaKey.exists()) {
+                throw new IllegalArgumentException("RSA-key-file  bestaat niet.");
+            }
+
+            FileSystemOptions options = new FileSystemOptions();
+            DefaultFileSystemConfigBuilder.getInstance().setUserAuthenticator(options, auth);
+            SftpFileSystemConfigBuilder.getInstance().setUserInfo(options, new SftpPassphraseUserInfo(passphraseRsaKey));
+            SftpFileSystemConfigBuilder.getInstance().setIdentities(options, new File[]{fileRsaKey});
+            SftpFileSystemConfigBuilder.getInstance().setPreferredAuthentications(options, "publickey");
+            FileSystemManager vfsManager = VFS.getManager();
+            System.out.println("init success");
+
+
+//            FileObject fakeFile = vfsManager.resolveFile("sftp://172.30.248.31/bestandsuitwisseling/bestanden/" + "FakeRemoteFile.txt", options);
+//            System.out.println("connection success");
+//
+//            File file = new File(localFilePath);
+//            FileObject localFile = vfsManager.resolveFile(file.getAbsolutePath());
+//
+//            fakeFile.copyFrom(localFile, Selectors.SELECT_SELF);
+//            fakeFile.close();
+//            localFile.close();
+
+            FileObject deleteFile = vfsManager.resolveFile("sftp://172.30.248.31/bestandsuitwisseling/bestanden/" + "FakeRemoteFile.txt", options);
+            deleteFile.delete(Selectors.SELECT_SELF);
+            deleteFile.close();
+
+//            StandardFileSystemManager standardFileSystemManager = new StandardFileSystemManager();
+//            standardFileSystemManager.init();
+//            this.vfsManager = standardFileSystemManager;
+        } catch (IOException e) {
+            System.out.println("IO Exception");
+            throw new RuntimeException(e);
+            // rethrow
+        } finally {
+
+        }
+    }
+
+    public static FileObject getFileObject(FileSystemManager vfsManager, String fileName, FileSystemOptions options) throws FileSystemException {
+        return vfsManager.resolveFile("/bestandsuitwisseling/bestanden/" + fileName, options);
     }
 
     /**
      * Method to upload a file in Remote server
      *
-     * @param hostName
-     *            HostName of the server
-     * @param username
-     *            UserName to login
-     * @param password
-     *            Password to login
-     * @param localFilePath
-     *            LocalFilePath. Should contain the entire local file path -
-     *            Directory and Filename with \\ as separator
-     * @param remoteFilePath
-     *            remoteFilePath. Should contain the entire remote file path -
-     *            Directory and Filename with / as separator
+     * @param hostName       HostName of the server
+     * @param username       UserName to login
+     * @param password       Password to login
+     * @param localFilePath  LocalFilePath. Should contain the entire local file path -
+     *                       Directory and Filename with \\ as separator
+     * @param remoteFilePath remoteFilePath. Should contain the entire remote file path -
+     *                       Directory and Filename with / as separator
      */
     public static void upload(String hostName, String username, String password, String localFilePath, String remoteFilePath) {
 
@@ -84,7 +134,7 @@ public class vfsExample {
         }
     }
 
-    public static boolean move(String hostName, String username, String password, String remoteSrcFilePath, String remoteDestFilePath){
+    public static boolean move(String hostName, String username, String password, String remoteSrcFilePath, String remoteDestFilePath) {
         StandardFileSystemManager manager = new StandardFileSystemManager();
 
         try {
@@ -95,11 +145,11 @@ public class vfsExample {
             FileObject remoteDestFile = manager.resolveFile(createConnectionString(hostName, username, password, remoteDestFilePath), createDefaultOptions());
 
             if (remoteFile.exists()) {
-                remoteFile.moveTo(remoteDestFile);;
+                remoteFile.moveTo(remoteDestFile);
+                ;
                 System.out.println("Move remote file success");
                 return true;
-            }
-            else{
+            } else {
                 System.out.println("Source file doesn't exist");
                 return false;
             }
@@ -113,18 +163,13 @@ public class vfsExample {
     /**
      * Method to download the file from remote server location
      *
-     * @param hostName
-     *            HostName of the server
-     * @param username
-     *            UserName to login
-     * @param password
-     *            Password to login
-     * @param localFilePath
-     *            LocalFilePath. Should contain the entire local file path -
-     *            Directory and Filename with \\ as separator
-     * @param remoteFilePath
-     *            remoteFilePath. Should contain the entire remote file path -
-     *            Directory and Filename with / as separator
+     * @param hostName       HostName of the server
+     * @param username       UserName to login
+     * @param password       Password to login
+     * @param localFilePath  LocalFilePath. Should contain the entire local file path -
+     *                       Directory and Filename with \\ as separator
+     * @param remoteFilePath remoteFilePath. Should contain the entire remote file path -
+     *                       Directory and Filename with / as separator
      */
     public static void download(String hostName, String username, String password, String localFilePath, String remoteFilePath) {
 
@@ -156,15 +201,11 @@ public class vfsExample {
     /**
      * Method to delete the specified file from the remote system
      *
-     * @param hostName
-     *            HostName of the server
-     * @param username
-     *            UserName to login
-     * @param password
-     *            Password to login
-     * @param remoteFilePath
-     *            remoteFilePath. Should contain the entire remote file path -
-     *            Directory and Filename with / as separator
+     * @param hostName       HostName of the server
+     * @param username       UserName to login
+     * @param password       Password to login
+     * @param remoteFilePath remoteFilePath. Should contain the entire remote file path -
+     *                       Directory and Filename with / as separator
      */
     public static void delete(String hostName, String username, String password, String remoteFilePath) {
         StandardFileSystemManager manager = new StandardFileSystemManager();
@@ -187,19 +228,16 @@ public class vfsExample {
     }
 
     // Check remote file is exist function:
+
     /**
      * Method to check if the remote file exists in the specified remote
      * location
      *
-     * @param hostName
-     *            HostName of the server
-     * @param username
-     *            UserName to login
-     * @param password
-     *            Password to login
-     * @param remoteFilePath
-     *            remoteFilePath. Should contain the entire remote file path -
-     *            Directory and Filename with / as separator
+     * @param hostName       HostName of the server
+     * @param username       UserName to login
+     * @param password       Password to login
+     * @param remoteFilePath remoteFilePath. Should contain the entire remote file path -
+     *                       Directory and Filename with / as separator
      * @return Returns if the file exists in the specified remote location
      */
     public static boolean exist(String hostName, String username, String password, String remoteFilePath) {
@@ -224,15 +262,11 @@ public class vfsExample {
     /**
      * Generates SFTP URL connection String
      *
-     * @param hostName
-     *            HostName of the server
-     * @param username
-     *            UserName to login
-     * @param password
-     *            Password to login
-     * @param remoteFilePath
-     *            remoteFilePath. Should contain the entire remote file path -
-     *            Directory and Filename with / as separator
+     * @param hostName       HostName of the server
+     * @param username       UserName to login
+     * @param password       Password to login
+     * @param remoteFilePath remoteFilePath. Should contain the entire remote file path -
+     *                       Directory and Filename with / as separator
      * @return concatenated SFTP URL string
      */
     public static String createConnectionString(String hostName, String username, String password, String remoteFilePath) {
@@ -245,7 +279,7 @@ public class vfsExample {
      * Method to setup default SFTP config
      *
      * @return the FileSystemOptions object containing the specified
-     *         configuration options
+     * configuration options
      * @throws FileSystemException
      */
     public static FileSystemOptions createDefaultOptions() throws FileSystemException {
@@ -255,7 +289,10 @@ public class vfsExample {
         // SSH Key checking
         SftpFileSystemConfigBuilder.getInstance().setStrictHostKeyChecking(options, "no");
         SftpFileSystemConfigBuilder.getInstance().setUserInfo(options, new SftpPassphraseUserInfo("passphrase"));
-        SftpFileSystemConfigBuilder.getInstance().setIdentities(options, new File[]{}); // ppk "file"
+
+        File zpuserwas_fat_ppk = new File("D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\fileshare\\id_dsa_zpuserwas_fat.ppk");
+
+        SftpFileSystemConfigBuilder.getInstance().setIdentities(options, new File[]{zpuserwas_fat_ppk}); // ppk "file"
 
         /*
          * Using the following line will cause VFS to choose File System's Root

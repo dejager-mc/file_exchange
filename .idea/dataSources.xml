@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="4077846268">
+  <component name="DataSourceManagerImpl" format="xml" hash="3168628131">
     <data-source source="LOCAL" name="DB2 AS400" uuid="584458d2-1528-421c-aac2-d9b42d4b5ce5">
       <driver-ref>db2.jtopen</driver-ref>
       <jdbc-driver>com.ibm.as400.access.AS400JDBCDriver</jdbc-driver>

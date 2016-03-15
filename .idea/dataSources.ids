@@ -10,6 +10,7 @@
     <schema name="JIDTAFAT" catalog="IBG400E1"/>
     <schema name="JIDTAFBT" catalog="IBG400E1"/>
     <schema name="JIDTAONT" catalog="IBG400E1"/>
+    <schema name="JIOTA00002" catalog="IBG400E1"/>
     <schema name="JJDTAFAT" catalog="IBG400E1"/>
     <schema name="JJDTAGAT" catalog="IBG400E1"/>
     <schema name="KADTAONT" catalog="IBG400E1"/>
@@ -1787,6 +1788,87 @@
       <column name="IS_DELETABLE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
       <column name="VIEW_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
     </table>
+    <table name="EMAIL_NOTIFICATION" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="EMAIL_NOTIFICATION_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="10240" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FROM_EMAIL_ADDRESS" sqlType="VARCHAR" precision="512" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SUBJECT" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_EMAIL00001_EMAIL00001_00001" columns="EMAIL_NOTIFICATION_ID"/>
+      <exported-key name="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" table="FILE_TYPE" schema="JIDTAONT" catalog="IBG400E1" columns="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID"/>
+      <index name="EMAIL_NOTIFICATION" unique="true" columns=""/>
+    </table>
+    <table name="FILE" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FILELOCK_FILE_LOCK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILESPECS_FILE_SPECS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILETYPE_FILE_TYPE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_FILE_ID_00001" columns="FILE_ID"/>
+      <foreign-key name="FK_VSYYQP5ULSMVTRW93DEK5LT4" columns="FILELOCK_FILE_LOCK_ID" ref-table="FILE_LOCK" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="FILE_LOCK_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_7FQLQEHBBLXTAINT91BF9IUXI" columns="FILESPECS_FILE_SPECS_ID" ref-table="FILE_SPECS" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="FILE_SPECS_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_1JCOVDVT8R3FLQFLRSEE3C99X" columns="FILETYPE_FILE_TYPE_ID" ref-table="FILE_TYPE" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="FILE_TYPE_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_MY1Y8WKAODSREBXY78T9PPGHH" table="FILE_STATUS" schema="JIDTAONT" catalog="IBG400E1" columns="JOINED_FILE_ID"/>
+      <index name="FILE" unique="true" columns=""/>
+    </table>
+    <table name="FILE_LOCK" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_LOCK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="LOCK_MOMENT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="LOCKER_ID" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOCKER_PROCES" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_FILE_LOCK_FILE_00001_00001" columns="FILE_LOCK_ID"/>
+      <exported-key name="FK_VSYYQP5ULSMVTRW93DEK5LT4" table="FILE" schema="JIDTAONT" catalog="IBG400E1" columns="FILELOCK_FILE_LOCK_ID"/>
+      <index name="FILE_LOCK" unique="true" columns=""/>
+    </table>
+    <table name="FILE_SPECS" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_SPECS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FILE_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILE_PATCH" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILE_SIZE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_SPECS_FILE_00001_00001" columns="FILE_SPECS_ID"/>
+      <exported-key name="FK_7FQLQEHBBLXTAINT91BF9IUXI" table="FILE" schema="JIDTAONT" catalog="IBG400E1" columns="FILESPECS_FILE_SPECS_ID"/>
+      <index name="FILE_SPECS" unique="true" columns=""/>
+    </table>
+    <table name="FILE_STATUS" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_STATUS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="MOMENT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="JOINED_FILE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_00001_FILE_00001_00001" columns="FILE_STATUS_ID"/>
+      <foreign-key name="FK_MY1Y8WKAODSREBXY78T9PPGHH" columns="JOINED_FILE_ID" ref-table="FILE" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="FILE_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FILE_STATUS" unique="true" columns=""/>
+    </table>
+    <table name="FILE_TIME_MANAGEMENT" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_TIME_MANAGEMENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="KEEP_FILE_AFTER_DOWNLOADING_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="KEEP_FILE_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="WAIT_FOR_SOMETHING_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="Q_JIDTAONT_FILE_00002_FILE_00001_00001" columns="FILE_TIME_MANAGEMENT_ID"/>
+      <exported-key name="FK_DOHQX3M2WPGGV5K977WES6NS4" table="FILE_TYPE" schema="JIDTAONT" catalog="IBG400E1" columns="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID"/>
+      <index name="FILE_TIME_MANAGEMENT" unique="true" columns=""/>
+    </table>
+    <table name="FILE_TYPE" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_TYPE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="DISCRIPTION" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILEKIND" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="FILE_NAME_REGEXP_MATCHER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="GFTKANAAL_GFT_KANAAL_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_TYPE_FILE_00001_00001" columns="FILE_TYPE_ID"/>
+      <foreign-key name="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" columns="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID" ref-table="EMAIL_NOTIFICATION" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="EMAIL_NOTIFICATION_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_DOHQX3M2WPGGV5K977WES6NS4" columns="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID" ref-table="FILE_TIME_MANAGEMENT" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="FILE_TIME_MANAGEMENT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_43QWE7DY0RYGW4LWBMTVN0V8H" columns="GFTKANAAL_GFT_KANAAL_ID" ref-table="GFT_KANAAL" ref-schema="JIDTAONT" ref-catalog="IBG400E1" ref-columns="GFT_KANAAL_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_1JCOVDVT8R3FLQFLRSEE3C99X" table="FILE" schema="JIDTAONT" catalog="IBG400E1" columns="FILETYPE_FILE_TYPE_ID"/>
+      <index name="FILE_TYPE" unique="true" columns=""/>
+      <index name="UK_QO086V9SRQX86FPF4KCRYL5SE" unique="true" columns=""/>
+    </table>
+    <table name="GFT_KANAAL" schema="JIDTAONT" catalog="IBG400E1" type="TABLE">
+      <column name="GFT_KANAAL_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="KANAAL_NAAM" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_GFT_KANAAL_GFT_K00001_00001" columns="GFT_KANAAL_ID"/>
+      <exported-key name="FK_43QWE7DY0RYGW4LWBMTVN0V8H" table="FILE_TYPE" schema="JIDTAONT" catalog="IBG400E1" columns="GFTKANAAL_GFT_KANAAL_ID"/>
+      <index name="GFT_KANAAL" unique="true" columns=""/>
+    </table>
     <table name="SYSCHKCST" schema="JIDTAONT" catalog="IBG400E1" type="VIEW">
       <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
@@ -2005,6 +2087,457 @@
       <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
       <column name="IS_DELETABLE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
       <column name="VIEW_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="DATABASECHANGELOG" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AUTHOR" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="FILENAME" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DATEEXECUTED" sqlType="TIMESTAMP" precision="26" scale="6" nullable="false" jdbcType="93"/>
+      <column name="ORDEREXECUTED" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="EXECTYPE" sqlType="VARCHAR" precision="10" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MD5SUM" sqlType="VARCHAR" precision="35" scale="0" nullable="true" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COMMENTS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TAG" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LIQUIBASE" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONTEXTS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LABELS" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="DATABASECHANGELOGLOCK" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LOCKED" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="LOCKGRANTED" sqlType="TIMESTAMP" precision="26" scale="6" nullable="true" jdbcType="93"/>
+      <column name="LOCKEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PK_DBCHGLOGLOCK" columns="ID"/>
+      <index name="DATABASECHANGELOGLOCK" unique="true" columns=""/>
+    </table>
+    <table name="EMAIL_NOTIFICATION" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="EMAIL_NOTIFICATION_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="CONTENT" sqlType="VARCHAR" precision="10240" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FROM_EMAIL_ADDRESS" sqlType="VARCHAR" precision="512" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SUBJECT" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_EMAIL00001_EMAIL00001_00001" columns="EMAIL_NOTIFICATION_ID"/>
+      <exported-key name="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" table="FILE_TYPE" schema="JIOTA00002" catalog="IBG400E1" columns="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID"/>
+      <index name="EMAIL_NOTIFICATION" unique="true" columns=""/>
+    </table>
+    <table name="FILE" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FILELOCK_FILE_LOCK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILESPECS_FILE_SPECS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILETYPE_FILE_TYPE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_FILE_ID_00001" columns="FILE_ID"/>
+      <foreign-key name="FK_VSYYQP5ULSMVTRW93DEK5LT4" columns="FILELOCK_FILE_LOCK_ID" ref-table="FILE_LOCK" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="FILE_LOCK_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_7FQLQEHBBLXTAINT91BF9IUXI" columns="FILESPECS_FILE_SPECS_ID" ref-table="FILE_SPECS" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="FILE_SPECS_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_1JCOVDVT8R3FLQFLRSEE3C99X" columns="FILETYPE_FILE_TYPE_ID" ref-table="FILE_TYPE" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="FILE_TYPE_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_MY1Y8WKAODSREBXY78T9PPGHH" table="FILE_STATUS" schema="JIOTA00002" catalog="IBG400E1" columns="JOINED_FILE_ID"/>
+      <index name="FILE" unique="true" columns=""/>
+    </table>
+    <table name="FILE_LOCK" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_LOCK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="LOCK_MOMENT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="LOCKER_ID" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LOCKER_PROCES" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_FILE_LOCK_FILE_00001_00001" columns="FILE_LOCK_ID"/>
+      <exported-key name="FK_VSYYQP5ULSMVTRW93DEK5LT4" table="FILE" schema="JIOTA00002" catalog="IBG400E1" columns="FILELOCK_FILE_LOCK_ID"/>
+      <index name="FILE_LOCK" unique="true" columns=""/>
+    </table>
+    <table name="FILE_SPECS" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_SPECS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="FILE_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILE_PATCH" sqlType="VARCHAR" precision="1024" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILE_SIZE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_SPECS_FILE_00001_00001" columns="FILE_SPECS_ID"/>
+      <exported-key name="FK_7FQLQEHBBLXTAINT91BF9IUXI" table="FILE" schema="JIOTA00002" catalog="IBG400E1" columns="FILESPECS_FILE_SPECS_ID"/>
+      <index name="FILE_SPECS" unique="true" columns=""/>
+    </table>
+    <table name="FILE_STATUS" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_STATUS_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="MOMENT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="STATUS" sqlType="VARCHAR" precision="30" scale="0" nullable="true" jdbcType="12"/>
+      <column name="JOINED_FILE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_00001_FILE_00001_00001" columns="FILE_STATUS_ID"/>
+      <foreign-key name="FK_MY1Y8WKAODSREBXY78T9PPGHH" columns="JOINED_FILE_ID" ref-table="FILE" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="FILE_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FILE_STATUS" unique="true" columns=""/>
+    </table>
+    <table name="FILE_TIME_MANAGEMENT" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_TIME_MANAGEMENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="KEEP_FILE_AFTER_DOWNLOADING_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="KEEP_FILE_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="WAIT_FOR_SOMETHING_FOR_DAYS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="Q_JIDTAONT_FILE_00002_FILE_00001_00001" columns="FILE_TIME_MANAGEMENT_ID"/>
+      <exported-key name="FK_DOHQX3M2WPGGV5K977WES6NS4" table="FILE_TYPE" schema="JIOTA00002" catalog="IBG400E1" columns="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID"/>
+      <index name="FILE_TIME_MANAGEMENT" unique="true" columns=""/>
+    </table>
+    <table name="FILE_TYPE" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="FILE_TYPE_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="DISCRIPTION" sqlType="VARCHAR" precision="500" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FILEKIND" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="FILE_NAME_REGEXP_MATCHER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="NAME" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="GFTKANAAL_GFT_KANAAL_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="Q_JIDTAONT_FILE_TYPE_FILE_00001_00001" columns="FILE_TYPE_ID"/>
+      <foreign-key name="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" columns="EMAILNOTIFICATION_EMAIL_NOTIFICATION_ID" ref-table="EMAIL_NOTIFICATION" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="EMAIL_NOTIFICATION_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_DOHQX3M2WPGGV5K977WES6NS4" columns="FILETIMEMANAGEMENT_FILE_TIME_MANAGEMENT_ID" ref-table="FILE_TIME_MANAGEMENT" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="FILE_TIME_MANAGEMENT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_43QWE7DY0RYGW4LWBMTVN0V8H" columns="GFTKANAAL_GFT_KANAAL_ID" ref-table="GFT_KANAAL" ref-schema="JIOTA00002" ref-catalog="IBG400E1" ref-columns="GFT_KANAAL_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_1JCOVDVT8R3FLQFLRSEE3C99X" table="FILE" schema="JIOTA00002" catalog="IBG400E1" columns="FILETYPE_FILE_TYPE_ID"/>
+      <index name="FILE_TYPE" unique="true" columns=""/>
+      <index name="UK_QO086V9SRQX86FPF4KCRYL5SE" unique="true" columns=""/>
+    </table>
+    <table name="GFT_KANAAL" schema="JIOTA00002" catalog="IBG400E1" type="TABLE">
+      <column name="GFT_KANAAL_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="KANAAL_NAAM" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="Q_JIDTAONT_GFT_KANAAL_GFT_K00001_00001" columns="GFT_KANAAL_ID"/>
+      <exported-key name="FK_43QWE7DY0RYGW4LWBMTVN0V8H" table="FILE_TYPE" schema="JIOTA00002" catalog="IBG400E1" columns="GFTKANAAL_GFT_KANAAL_ID"/>
+      <index name="GFT_KANAAL" unique="true" columns=""/>
+    </table>
+    <table name="SYSCHKCST" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CHECK_CLAUSE" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSCOLUMNS" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDINAL_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DATA_TYPE" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NUMERIC_SCALE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="IS_NULLABLE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IS_UPDATABLE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="LONG_COMMENT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="HAS_DEFAULT" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="COLUMN_HEADING" sqlType="NVARCHAR" precision="60" scale="0" nullable="true" jdbcType="12"/>
+      <column name="STORAGE" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NUMERIC_PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CCSID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_DEFAULT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CHARACTER_MAXIMUM_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CHARACTER_OCTET_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="NUMERIC_PRECISION_RADIX" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="DATETIME_PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="COLUMN_TEXT" sqlType="NVARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SYSTEM_COLUMN_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="USER_DEFINED_TYPE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="USER_DEFINED_TYPE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IS_IDENTITY" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IDENTITY_GENERATION" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IDENTITY_START" sqlType="DECIMAL" precision="31" scale="0" nullable="true" jdbcType="3"/>
+      <column name="IDENTITY_INCREMENT" sqlType="DECIMAL" precision="31" scale="0" nullable="true" jdbcType="3"/>
+      <column name="IDENTITY_MINIMUM" sqlType="DECIMAL" precision="31" scale="0" nullable="true" jdbcType="3"/>
+      <column name="IDENTITY_MAXIMUM" sqlType="DECIMAL" precision="31" scale="0" nullable="true" jdbcType="3"/>
+      <column name="IDENTITY_CYCLE" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IDENTITY_CACHE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="IDENTITY_ORDER" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="COLUMN_EXPRESSION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="HIDDEN" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="HAS_FLDPROC" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+    </table>
+    <table name="SYSCST" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_TYPE" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IS_DEFERRABLE" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INITIALLY_DEFERRED" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="CONSTRAINT_KEYS" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="CONSTRAINT_STATE" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENABLED" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CHECK_PENDING" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CONSTRAINT_TEXT" sqlType="NVARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LONG_COMMENT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSCSTCOL" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_COLUMN_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSCSTDEP" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSFIELDS" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDINAL_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="DATA_TYPE" sqlType="VARCHAR" precision="8" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CHARACTER_MAXIMUM_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CHARACTER_OCTET_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="NUMERIC_SCALE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="NUMERIC_PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="NUMERIC_PRECISION_RADIX" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="CCSID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="DATETIME_PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="FIELD_PROC" sqlType="VARCHAR" precision="279" scale="0" nullable="true" jdbcType="12"/>
+      <column name="PARMLIST" sqlType="NCLOB" precision="1048576" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="EXITPARM" sqlType="BLOB" precision="1048576" scale="0" nullable="true" jdbcType="2004"/>
+      <column name="SYSTEM_COLUMN_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSINDEXES" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="INDEX_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INDEX_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IS_UNIQUE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="COLUMN_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="INDEX_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_INDEX_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_INDEX_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="LONG_COMMENT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="INDEX_TEXT" sqlType="NVARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IS_SPANNING_INDEX" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="INDEX_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="INDEX_HAS_SEARCH_CONDITION" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SEARCH_CONDITION_HAS_UDF" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SEARCH_CONDITION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="INDEX_HAS_INCLUDE_EXPRESSION" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="INCLUDE_EXPRESSION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+    </table>
+    <table name="SYSKEYCST" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ORDINAL_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="COLUMN_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TABLE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_COLUMN_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSKEYS" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="INDEX_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="INDEX_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ORDINAL_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ORDERING" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="INDEX_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_COLUMN_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_INDEX_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_INDEX_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="COLUMN_IS_EXPRESSION" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="EXPRESSION_HAS_UDF" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="KEY_EXPRESSION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+    </table>
+    <table name="SYSPACKAGE" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="PACKAGE_CATALOG" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PACKAGE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PACKAGE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PACKAGE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PACKAGE_CREATOR" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CREATION_TIMESTAMP" sqlType="CHAR" precision="26" scale="0" nullable="false" jdbcType="1"/>
+      <column name="DEFAULT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PROGRAM_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PROGRAM_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="PROGRAM_CATALOG" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ISOLATION" sqlType="CHAR" precision="2" scale="0" nullable="false" jdbcType="1"/>
+      <column name="QUOTE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="COMMA" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="PACKAGE_TEXT" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LONG_COMMENT" sqlType="VARCHAR" precision="2000" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSISTENCY_TOKEN" sqlType="CHAR () FOR BIT DATA" precision="8" scale="0" nullable="false" jdbcType="-2"/>
+      <column name="SYSTEM_PACKAGE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_PACKAGE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_DEFAULT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_PROGRAM_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_PROGRAM_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="CONCURRENTACCESSRESOLUTION" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSREFCST" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="UNIQUE_CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="UNIQUE_CONSTRAINT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MATCH_OPTION" sqlType="VARCHAR" precision="7" scale="0" nullable="false" jdbcType="12"/>
+      <column name="UPDATE_RULE" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DELETE_RULE" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="SYSTEM_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_UNIQUE_CONSTRAINT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+    </table>
+    <table name="SYSTABLEDEP" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_TYPE" sqlType="CHAR" precision="24" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="PARM_SIGNATURE" sqlType="VARCHAR () FOR BIT DATA" precision="10000" scale="0" nullable="true" jdbcType="-3"/>
+    </table>
+    <table name="SYSTABLES" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_TYPE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="COLUMN_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ROW_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="TABLE_TEXT" sqlType="NVARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LONG_COMMENT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="LAST_ALTERED_TIMESTAMP" sqlType="TIMESTAMP" precision="26" scale="6" nullable="false" jdbcType="93"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="FILE_TYPE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="BASE_TABLE_CATALOG" sqlType="VARCHAR" precision="18" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BASE_TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BASE_TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BASE_TABLE_MEMBER" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SYSTEM_TABLE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SELECT_OMIT" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IS_INSERTABLE_INTO" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="ENABLED" sqlType="VARCHAR" precision="3" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MAINTENANCE" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REFRESH" sqlType="VARCHAR" precision="9" scale="0" nullable="true" jdbcType="12"/>
+      <column name="REFRESH_TIME" sqlType="TIMESTAMP" precision="26" scale="6" nullable="true" jdbcType="93"/>
+      <column name="MQT_DEFINITION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="ISOLATION" sqlType="CHAR" precision="2" scale="0" nullable="true" jdbcType="1"/>
+      <column name="PARTITION_TABLE" sqlType="VARCHAR" precision="11" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="MQT_RESTORE_DEFERRED" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+    </table>
+    <table name="SYSTRIGCOL" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_TYPE" sqlType="VARCHAR" precision="24" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_TRIGGER_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+    </table>
+    <table name="SYSTRIGDEP" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_TYPE" sqlType="CHAR" precision="24" scale="0" nullable="false" jdbcType="1"/>
+      <column name="PARM_SIGNATURE" sqlType="VARCHAR () FOR BIT DATA" precision="10000" scale="0" nullable="true" jdbcType="-3"/>
+      <column name="SYSTEM_TRIGGER_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_OBJECT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SYSTEM_OBJECT_NAME" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+    </table>
+    <table name="SYSTRIGGERS" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENT_MANIPULATION" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENT_OBJECT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENT_OBJECT_TABLE" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACTION_ORDER" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ACTION_CONDITION" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="ACTION_STATEMENT" sqlType="NCLOB" precision="2097152" scale="0" nullable="true" jdbcType="2005"/>
+      <column name="ACTION_ORIENTATION" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACTION_TIMING" sqlType="VARCHAR" precision="7" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_MODE" sqlType="VARCHAR" precision="6" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_OLD_ROW" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_NEW_ROW" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_OLD_TABLE" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ACTION_REFERENCE_NEW_TABLE" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="SQL_PATH" sqlType="VARCHAR" precision="3483" scale="0" nullable="true" jdbcType="12"/>
+      <column name="CREATED" sqlType="TIMESTAMP" precision="26" scale="6" nullable="false" jdbcType="93"/>
+      <column name="TRIGGER_PROGRAM_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_PROGRAM_LIBRARY" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OPERATIVE" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ENABLED" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="THREADSAFE" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MULTITHREADED_JOB_ACTION" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ALLOW_REPEATED_CHANGE" sqlType="VARCHAR" precision="8" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_UPDATE_CONDITION" sqlType="CHAR" precision="8" scale="0" nullable="true" jdbcType="1"/>
+      <column name="TRIGGER_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_TEXT" sqlType="NVARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LONG_COMMENT" sqlType="NVARCHAR" precision="2000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SYSTEM_TRIGGER_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_EVENT_OBJECT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_EVENT_OBJECT_TABLE" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="EVENTUPDATE" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENTINSERT" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENTDELETE" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
+    </table>
+    <table name="SYSTRIGUPD" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGER_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENT_OBJECT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="EVENT_OBJECT_TABLE" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="TRIGGERED_UPDATE_COLUMNS" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_TRIGGER_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_EVENT_OBJECT_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_EVENT_OBJECT_TABLE" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+    </table>
+    <table name="SYSVIEWDEP" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="VIEW_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="VIEW_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="OBJECT_TYPE" sqlType="CHAR" precision="24" scale="0" nullable="false" jdbcType="1"/>
+      <column name="VIEW_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_VIEW_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_VIEW_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_NAME" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="SYSTEM_TABLE_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="true" jdbcType="1"/>
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TABLE_TYPE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="PARM_SIGNATURE" sqlType="VARCHAR () FOR BIT DATA" precision="10000" scale="0" nullable="true" jdbcType="-3"/>
+    </table>
+    <table name="SYSVIEWS" schema="JIOTA00002" catalog="IBG400E1" type="VIEW">
+      <column name="TABLE_NAME" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="VIEW_OWNER" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SEQNO" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CHECK_OPTION" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="VIEW_DEFINITION" sqlType="NVARCHAR" precision="5000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="IS_UPDATABLE" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SYSTEM_VIEW_NAME" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="SYSTEM_VIEW_SCHEMA" sqlType="CHAR" precision="10" scale="0" nullable="false" jdbcType="1"/>
+      <column name="IS_INSERTABLE_INTO" sqlType="VARCHAR" precision="3" scale="0" nullable="false" jdbcType="12"/>
+      <column name="IASP_NUMBER" sqlType="SMALLINT" precision="5" scale="0" nullable="false" jdbcType="5"/>
+      <column name="IS_DELETABLE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
+      <column name="VIEW_DEFINER" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="ROUNDING_MODE" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1"/>
     </table>
     <table name="JJ_EVENT" schema="JJDTAFAT" catalog="IBG400E1" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
