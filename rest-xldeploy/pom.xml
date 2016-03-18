@@ -123,6 +123,11 @@
                         <!--<duo.JbossSystemPropertySpec name="OMGEVING">-->
                             <!--<systemPropertyValue>{{OMGEVING}}</systemPropertyValue>-->
                         <!--</duo.JbossSystemPropertySpec>-->
+
+                        <duo.JbossSystemPropertySpec name="sftp.user">
+                            <systemPropertyValue>{{sftp.user}}</systemPropertyValue>
+                        </duo.JbossSystemPropertySpec>
+
                     </deployables>
                     <serverAddress>${xldeploy.server}</serverAddress>
                     <context>${xldeploy.contextroot}</context>

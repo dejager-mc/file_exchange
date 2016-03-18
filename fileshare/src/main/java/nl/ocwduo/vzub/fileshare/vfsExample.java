@@ -7,6 +7,7 @@ import org.apache.commons.vfs2.impl.DefaultFileSystemConfigBuilder;
 import org.apache.commons.vfs2.impl.StandardFileSystemManager;
 import org.apache.commons.vfs2.provider.sftp.SftpFileSystemConfigBuilder;
 import org.omg.SendingContext.RunTime;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +21,29 @@ import java.io.IOException;
  */
 public class vfsExample {
 
+//    @Value("#{systemProperties['cmdParam']}")
+//    private String cmdParamMap;
+//
+//    @Value("#{systemProperties.cmdParam}")
+//    private String cmdParamDirect;
+//
+//    @Value("${cmdParam}")
+//    private String cmdParamProp;
+
+    @Value("#{systemProperties.sftp.user}")
+    private String user;
+
+    private String passphrase;
+    private String root;
+    private String rsaKeyPath;
+    private String host;
+
     public static void main(String[] args) {
         String hostName = "172.30.248.31:22";
         String username = "zpuserwas";
         String password = "caramelchew";
 
-        String localFilePath = "D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\fileshare\\readme.txt";
+        String localFilePath = "D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\nl.ocwduo.vzub.fileshare\\readme.txt";
         String remoteFilePath = "bestandsuitwisseling/bestanden/FakeRemoteFile.txt";
         String remoteTempFilePath = "bestandsuitwisseling/bestanden/FakeRemoteTempFile.txt";
 
@@ -57,8 +75,16 @@ public class vfsExample {
             SftpFileSystemConfigBuilder.getInstance().setUserInfo(options, new SftpPassphraseUserInfo(passphraseRsaKey));
             SftpFileSystemConfigBuilder.getInstance().setIdentities(options, new File[]{fileRsaKey});
             SftpFileSystemConfigBuilder.getInstance().setPreferredAuthentications(options, "publickey");
-            FileSystemManager vfsManager = VFS.getManager();
+//            FileSystemManager vfsManager = VFS.getManager();
+//            FileSystemManager vfsManager = fileSystemManager.get();
             System.out.println("init success");
+
+            FileSystemManager vfsManager = (FileSystemManager)fileSystemManager.get();
+
+            // bagit-java
+            // 3.13
+            // https://github.com/LibraryOfCongress/bagit-java/tree/bagit-3.13
+
 
 
 //            FileObject fakeFile = vfsManager.resolveFile("sftp://172.30.248.31/bestandsuitwisseling/bestanden/" + "FakeRemoteFile.txt", options);
@@ -290,7 +316,7 @@ public class vfsExample {
         SftpFileSystemConfigBuilder.getInstance().setStrictHostKeyChecking(options, "no");
         SftpFileSystemConfigBuilder.getInstance().setUserInfo(options, new SftpPassphraseUserInfo("passphrase"));
 
-        File zpuserwas_fat_ppk = new File("D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\fileshare\\id_dsa_zpuserwas_fat.ppk");
+        File zpuserwas_fat_ppk = new File("D:\\JAVA\\Projects\\VZUB_JI\\workspaces\\herbouw\\file_exchange\\scripts\\nl.ocwduo.vzub.fileshare\\id_dsa_zpuserwas_fat.ppk");
 
         SftpFileSystemConfigBuilder.getInstance().setIdentities(options, new File[]{zpuserwas_fat_ppk}); // ppk "file"
 
@@ -341,5 +367,24 @@ public class vfsExample {
         }
 
     }
+
+    private static final ThreadLocal fileSystemManager = new ThreadLocal() {
+        @Override
+        protected FileSystemManager initialValue() {
+            StandardFileSystemManager mgr = new StandardFileSystemManager();
+//            mgr.setLogger(LogFactory.getLog(VFS.class));
+
+            try
+            {
+                mgr.init();
+            }
+            catch (FileSystemException e)
+            {
+//                log.fatal("Could not initialize thread-local FileSystemManager.", e);
+            }
+
+            return mgr;
+        }
+    };
 }
 
