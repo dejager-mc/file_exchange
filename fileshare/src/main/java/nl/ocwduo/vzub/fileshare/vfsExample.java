@@ -149,7 +149,10 @@ public class vfsExample {
              * options - Ashok.
              */
 
+
+
             // Copy local file to sftp server
+//            remoteFile.copyFrom(localFile, Selectors.);
             remoteFile.copyFrom(localFile, Selectors.SELECT_SELF);
 
             System.out.println("File upload success");
