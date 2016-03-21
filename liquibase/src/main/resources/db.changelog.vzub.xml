@@ -3,8 +3,7 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
     <changeSet author="in434jag (generated)" id="1457690225937-1">
@@ -131,24 +130,78 @@
     </changeSet>
     <!-- zelf de baseColumnNames toegevoegd = foreign key names-->
     <changeSet author="in434jag (generated)" id="1457690225937-17">
-        <addForeignKeyConstraint baseColumnNames="fileType_FILE_TYPE_ID" baseTableName="FILE" constraintName="FK_1JCOVDVT8R3FLQFLRSEE3C99X" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TYPE_ID" referencedTableName="FILE_TYPE"/>
+        <addForeignKeyConstraint baseColumnNames="fileType_FILE_TYPE_ID" baseTableName="FILE"
+                                 constraintName="FK_1JCOVDVT8R3FLQFLRSEE3C99X" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="FILE_TYPE_ID" referencedTableName="FILE_TYPE"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-18">
-        <addForeignKeyConstraint baseColumnNames="gftKanaal_GFT_KANAAL_ID" baseTableName="FILE_TYPE" constraintName="FK_43QWE7DY0RYGW4LWBMTVN0V8H" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="GFT_KANAAL_ID" referencedTableName="GFT_KANAAL"/>
+        <addForeignKeyConstraint baseColumnNames="gftKanaal_GFT_KANAAL_ID" baseTableName="FILE_TYPE"
+                                 constraintName="FK_43QWE7DY0RYGW4LWBMTVN0V8H" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="GFT_KANAAL_ID" referencedTableName="GFT_KANAAL"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-19">
-        <addForeignKeyConstraint baseColumnNames="fileSpecs_FILE_SPECS_ID" baseTableName="FILE" constraintName="FK_7FQLQEHBBLXTAINT91BF9IUXI" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_SPECS_ID" referencedTableName="FILE_SPECS"/>
+        <addForeignKeyConstraint baseColumnNames="fileSpecs_FILE_SPECS_ID" baseTableName="FILE"
+                                 constraintName="FK_7FQLQEHBBLXTAINT91BF9IUXI" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="FILE_SPECS_ID" referencedTableName="FILE_SPECS"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-20">
-        <addForeignKeyConstraint baseColumnNames="fileTimeManagement_FILE_TIME_MANAGEMENT_ID" baseTableName="FILE_TYPE" constraintName="FK_DOHQX3M2WPGGV5K977WES6NS4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_TIME_MANAGEMENT_ID" referencedTableName="FILE_TIME_MANAGEMENT"/>
+        <addForeignKeyConstraint baseColumnNames="fileTimeManagement_FILE_TIME_MANAGEMENT_ID" baseTableName="FILE_TYPE"
+                                 constraintName="FK_DOHQX3M2WPGGV5K977WES6NS4" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="FILE_TIME_MANAGEMENT_ID"
+                                 referencedTableName="FILE_TIME_MANAGEMENT"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-21">
-        <addForeignKeyConstraint baseColumnNames="JOINED_FILE_ID" baseTableName="FILE_STATUS" constraintName="FK_MY1Y8WKAODSREBXY78T9PPGHH" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_ID" referencedTableName="FILE"/>
+        <addForeignKeyConstraint baseColumnNames="JOINED_FILE_ID" baseTableName="FILE_STATUS"
+                                 constraintName="FK_MY1Y8WKAODSREBXY78T9PPGHH" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="FILE_ID" referencedTableName="FILE"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-22">
-        <addForeignKeyConstraint baseColumnNames="emailNotification_EMAIL_NOTIFICATION_ID" baseTableName="FILE_TYPE" constraintName="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="EMAIL_NOTIFICATION_ID" referencedTableName="EMAIL_NOTIFICATION"/>
+        <addForeignKeyConstraint baseColumnNames="emailNotification_EMAIL_NOTIFICATION_ID" baseTableName="FILE_TYPE"
+                                 constraintName="FK_N7LY94OV1IJW2Y3KCR9JKN4U3" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="EMAIL_NOTIFICATION_ID"
+                                 referencedTableName="EMAIL_NOTIFICATION"/>
     </changeSet>
     <changeSet author="in434jag (generated)" id="1457690225937-23">
-        <addForeignKeyConstraint baseColumnNames="fileLock_FILE_LOCK_ID" baseTableName="FILE" constraintName="FK_VSYYQP5ULSMVTRW93DEK5LT4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="FILE_LOCK_ID" referencedTableName="FILE_LOCK"/>
+        <addForeignKeyConstraint baseColumnNames="fileLock_FILE_LOCK_ID" baseTableName="FILE"
+                                 constraintName="FK_VSYYQP5ULSMVTRW93DEK5LT4" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="FILE_LOCK_ID" referencedTableName="FILE_LOCK"/>
     </changeSet>
+
+    <!-- organisatie toevoegen aan FileType tabel-->
+    <!-- Organisatie tabel -->
+    <changeSet author="in434jag" id="1458554230-1">
+        <createTable tableName="ORGANISATIE">
+            <column autoIncrement="true" name="ORGANISATIE_ID" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="Q_JIDTAONT_ORGANISATIE_00001"/>
+            </column>
+            <column name="ORGANISATIE_NUMMER" type="INTEGER"/>
+            <column name="ORGANISATIE_WAARDE" type="VARCHAR(1024)"/>
+            <column name="ORGANISATIE_NAAM" type="VARCHAR(1024)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="in434jag" id="1458554230-2">
+        <createIndex indexName="index_organisatie_naam_id" tableName="ORGANISATIE" unique="true">
+            <column name="ORGANISATIE_NUMMER"/>
+        </createIndex>
+    </changeSet>
+    <!-- Organisatie toevoegen aan FileType -->
+    <changeSet author="in434jag" id="1458554230-3">
+        <addColumn tableName="FILE_TYPE">
+            <column name="ORGANISATIE_ORGANISATIE_ID" type="BIGINT"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="in434jag" id="1458554230-4">
+        <addForeignKeyConstraint baseColumnNames="ORGANISATIE_ORGANISATIE_ID" baseTableName="FILE_TYPE"
+                                 constraintName="index_organisatie_naam_id" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="primaryKeyName"
+                                 referencedTableName="ORGANISATIE"/>
+    </changeSet>
+
 </databaseChangeLog>

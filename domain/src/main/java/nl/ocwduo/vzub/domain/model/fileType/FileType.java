@@ -3,6 +3,7 @@ package nl.ocwduo.vzub.domain.model.fileType;
 import nl.ocwduo.vzub.domain.model.fileType.details.EmailNotification;
 import nl.ocwduo.vzub.domain.model.fileType.details.FileTimeManagement;
 import nl.ocwduo.vzub.domain.model.fileType.details.GftKanaal;
+import nl.ocwduo.vzub.domain.model.fileType.details.Organisatie;
 import nl.ocwduo.vzub.domain.model.fileType.enums.FileKind;
 
 import javax.persistence.*;
@@ -20,17 +21,14 @@ public class FileType {
     @Column(name = "FILE_TYPE_ID")
     private Long id;
 
-    @NotNull
-    @Column(length = 20,unique = true)
+    @Column(length = 20,unique = true, nullable = false)
     private String name;
 
-    @Column(length = 500)
-    @NotNull
+    @Column(length = 500, nullable = false)
     private String discription;
     @Column(name = "FILE_NAME_REGEXP_MATCHER", length = 255)
     private String fileNameRegExpMatcher;
 
-    // bevat alle wachttijden etc.
     @NotNull
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private FileTimeManagement fileTimeManagement;
@@ -40,12 +38,22 @@ public class FileType {
     // in geval van backoffice file
     @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
     private EmailNotification emailNotification;
+
     // onderscheidend vermogen: backoffice of customer file
-    @NotNull
+    @Column(name = "File_Kind", nullable = false)
     private FileKind fileKind;
 
-    private int organisatieId;
+    @OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+    private Organisatie organisatie;
 
+
+    public Organisatie getOrganisatie() {
+        return organisatie;
+    }
+
+    public void setOrganisatie(Organisatie organisatie) {
+        this.organisatie = organisatie;
+    }
 
     public Long getId() {
         return id;
