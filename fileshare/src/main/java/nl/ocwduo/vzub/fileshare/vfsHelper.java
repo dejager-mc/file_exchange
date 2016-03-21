@@ -35,11 +35,18 @@ public class vfsHelper {
 
     }
 
-    private void createNewFileOnFileShare(String path, String name) {
+    /**
+     *
+     * @param serverUrl sftp://172.30.248.31/
+     * @param rootPath bestandsuitwisseling/bestanden/
+     * @param path
+     * @param fileName
+     */
+    private void createNewFileOnFileShare(String serverUrl, String rootPath, String path, String fileName) {
         FileSystemManager fsManager = (FileSystemManager)fileSystemManager.get();
         FileObject fileObject = null;
         try {
-            fileObject = fsManager.resolveFile(path + "/" + name);
+            fileObject = fsManager.resolveFile(serverUrl + rootPath + path + "/" + fileName);
         } catch (FileSystemException e) {
             e.printStackTrace();
         } finally {
