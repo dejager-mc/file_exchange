@@ -1,6 +1,5 @@
 package nl.ocwduo.vzub.domain.dao;
 
-import junit.framework.TestCase;
 import nl.ocwduo.vzub.domain.dao.file.FileDao;
 import nl.ocwduo.vzub.domain.dao.fileType.FileTypeDao;
 import nl.ocwduo.vzub.domain.main.testMain;
@@ -12,7 +11,6 @@ import nl.ocwduo.vzub.domain.model.fileType.FileType;
 import nl.ocwduo.vzub.domain.model.fileType.details.EmailNotification;
 import nl.ocwduo.vzub.domain.model.fileType.details.FileTimeManagement;
 import nl.ocwduo.vzub.domain.model.fileType.enums.FileKind;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -42,13 +39,21 @@ public class FileDaoTestIntegration extends testMain {
 //    @After
     @Before
     public void clearDataFromDatabase() {
-        fileDao.findAll()
-                .stream()
-                .forEach(file -> deleteFile(file));
+//        fileDao.findAll()
+//                .stream()
+//                .forEach(file -> deleteFile(file));
 
-        fileTypeDao.findAll()
-                .stream()
-                .forEach(fileType -> deleteFileType(fileType));
+        for (File file : fileDao.findAll()) {
+            deleteFile(file);
+        }
+
+//        fileTypeDao.findAll()
+//                .stream()
+//                .forEach(fileType -> deleteFileType(fileType));
+
+        for (FileType fileType : fileTypeDao.findAll()) {
+            deleteFileType(fileType);
+        }
     }
 
     public void deleteFileType(FileType fileType) {
@@ -193,7 +198,7 @@ public class FileDaoTestIntegration extends testMain {
 
     private FileStatus getBackOfficeDefaultFileStatus() {
         FileStatus fileStatus = new FileStatus();
-        fileStatus.setMoment(LocalDateTime.now().toEpochSecond(ZoneOffset.ofTotalSeconds(0)));
+        fileStatus.setMoment(Calendar.getInstance().getTimeInMillis());
         fileStatus.setStatus(BackofficeFileStatus.BESTAND_AANGEMAAKT.toString());
         return fileStatus;
     }

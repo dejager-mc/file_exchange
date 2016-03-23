@@ -12,10 +12,12 @@
         <module>service</module>
         <module>fileshare</module>
         <module>zkl-client</module>
+        <module>autorisatie</module>
+        <module>liquibase</module>
         <module>batch</module>
         <module>rest</module>
-        <module>liquibase</module>
-        <module>rest-xldeploy</module>
+        <module>webApplication</module>
+        <module>xldeploy</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -38,9 +40,30 @@
             </dependency>
             <dependency>
                 <groupId>nl.ocwduo.vzub</groupId>
+                <artifactId>fileshare</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>nl.ocwduo.zkl</groupId>
+                <artifactId>zkl-client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>nl.ocwduo.vzub</groupId>
+                <artifactId>autorisatie</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>nl.ocwduo.vzub</groupId>
+                <artifactId>batch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>nl.ocwduo.vzub</groupId>
                 <artifactId>rest</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>javax</groupId>
                 <artifactId>javaee-api</artifactId>
@@ -71,16 +94,27 @@
     <!--</repositories>-->
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.5.1</version>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
 

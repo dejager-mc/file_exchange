@@ -5,6 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 /**
  * Created by Machiel de Jager on 24-2-2016.
  */
@@ -25,10 +28,15 @@ public class ZklClientConfiguration {
     @Bean
     public JaxWsPortProxyFactoryBean zakelijkeKlantClient() {
         JaxWsPortProxyFactoryBean bean = new JaxWsPortProxyFactoryBean();
-//        bean.setServiceInterface();
-//        bean.setWsdlDocumentUrl();
-//        bean.setNamespaceUri();
-//        bean.setServiceName();
+//        bean.setServiceInterface(nl.duo.contract.zkl_zakelijke_klant_rpl_v1.ZKLZakelijkeKlantRPLV1PortType);
+
+        try {
+            bean.setWsdlDocumentUrl(new URL("classpath:wsdl/ZKL_Zakelijke_Klant_RPL_V1.wsdl"));
+        } catch (MalformedURLException e) {
+        }
+
+        bean.setNamespaceUri("http://duo.nl/contract/ZKL_Zakelijke_Klant_RPL_V1");
+        bean.setServiceName("ZKL_Zakelijke_Klant_RPL_V1");
         bean.addCustomProperty("endpointAddress", zklEndpoint);
         bean.addCustomProperty("username", zklUserEsb);
         bean.addCustomProperty("password", zklPasswordEsb);

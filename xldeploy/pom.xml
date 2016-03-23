@@ -9,16 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.ocwduo.vzub</groupId>
-    <artifactId>rest-xldeploy</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>nl.ocwduo.vzub</groupId>
-            <artifactId>liquibase</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <artifactId>xldeploy</artifactId>
 
     <build>
         <plugins>
@@ -42,9 +33,9 @@
 
                     <deployables combine.self="override">
                         <!--<liquibase.Changelog name="db.changelog.vzub.xml"-->
-                                             <!--location="${project.basedir}/liquibase/src/main/resources/db.changelog.vzub.xml">-->
-                            <!--<scanPlaceholders>true</scanPlaceholders>-->
-                            <!--<changeLogFile>master.changelog.xml</changeLogFile>-->
+                        <!--location="${project.basedir}/liquibase/src/main/resources/db.changelog.vzub.xml">-->
+                        <!--<scanPlaceholders>true</scanPlaceholders>-->
+                        <!--<changeLogFile>master.changelog.xml</changeLogFile>-->
                         <!--</liquibase.Changelog>-->
                         <liquibase.Changelog name="liquibase" location="../liquibase/src/main/resources">
                             <scanPlaceholders>true</scanPlaceholders>
@@ -54,16 +45,16 @@
                         <!-- war file -->
                         <jee.War name="${project.artifactId}" groupId="${project.groupId}"
                                  artifactId="${project.artifactId}"
-                                 location="${basedir}/../rest/target/rest.war"/>
+                                 location="${basedir}/../webApplication/target/vzub.war"/>
 
                         <!-- database -->
                         <!--<duo.JbossdmDb2ServerDataSourceSpec-->
-                                <!--name="kadta">-->
-                            <!--<jndiName>java:/jdbc/kadta</jndiName>-->
-                            <!--<username>{{database.kadta.username}}</username>-->
-                            <!--<password>{{database.kadta.password}}</password>-->
-                            <!--<maxPoolSize>10</maxPoolSize>-->
-                            <!--<connectionUrl>{{database.kadta.connectionUrl}}</connectionUrl>-->
+                        <!--name="kadta">-->
+                        <!--<jndiName>java:/jdbc/kadta</jndiName>-->
+                        <!--<username>{{database.kadta.username}}</username>-->
+                        <!--<password>{{database.kadta.password}}</password>-->
+                        <!--<maxPoolSize>10</maxPoolSize>-->
+                        <!--<connectionUrl>{{database.kadta.connectionUrl}}</connectionUrl>-->
                         <!--</duo.JbossdmDb2ServerDataSourceSpec>-->
                         <duo.JbossdmDb2ServerXaDataSourceSpec name="jidta">
                             <jndiName>java:/jdbc/nedta</jndiName>
@@ -76,52 +67,52 @@
                             </xaProperties>
                         </duo.JbossdmDb2ServerXaDataSourceSpec>
                         <!--<duo.JbossdmDb2ServerDataSourceSpec-->
-                                <!--name="jjdta">-->
-                            <!--<jndiName>java:/jdbc/jjdta</jndiName>-->
-                            <!--<username>{{database.jjdta.username}}</username>-->
-                            <!--<password>{{database.jjdta.password}}</password>-->
-                            <!--<maxPoolSize>10</maxPoolSize>-->
-                            <!--<connectionUrl>{{database.jjdta.connectionUrl}}</connectionUrl>-->
+                        <!--name="jjdta">-->
+                        <!--<jndiName>java:/jdbc/jjdta</jndiName>-->
+                        <!--<username>{{database.jjdta.username}}</username>-->
+                        <!--<password>{{database.jjdta.password}}</password>-->
+                        <!--<maxPoolSize>10</maxPoolSize>-->
+                        <!--<connectionUrl>{{database.jjdta.connectionUrl}}</connectionUrl>-->
                         <!--</duo.JbossdmDb2ServerDataSourceSpec>-->
                         <!--<duo.JbossPerformanceLoggingConfigSpec name="perflog-config-xa">-->
-                            <!--<applicationCode>xa</applicationCode>-->
+                        <!--<applicationCode>xa</applicationCode>-->
                         <!--</duo.JbossPerformanceLoggingConfigSpec>-->
                         <!--<duo.JbossdmSqlServerDataSourceSpec name="perfmon">-->
-                            <!--<jndiName>java:/jdbc/perfmon</jndiName>-->
-                            <!--<username>{{database.perfmon.username}}</username>-->
-                            <!--<password>{{database.perfmon.password}}</password>-->
-                            <!--<maxPoolSize>10</maxPoolSize>-->
-                            <!--<connectionUrl>{{database.perfmon.connectionUrl}}</connectionUrl>-->
+                        <!--<jndiName>java:/jdbc/perfmon</jndiName>-->
+                        <!--<username>{{database.perfmon.username}}</username>-->
+                        <!--<password>{{database.perfmon.password}}</password>-->
+                        <!--<maxPoolSize>10</maxPoolSize>-->
+                        <!--<connectionUrl>{{database.perfmon.connectionUrl}}</connectionUrl>-->
                         <!--</duo.JbossdmSqlServerDataSourceSpec>-->
 
                         <!-- Queue Connection Factory. -->
                         <!--<duo.JbossWmqQueueConnectionFactorySpec-->
-                                <!--name="QCF">-->
-                            <!--<jndiName>java:/jms/VZUB/QCF</jndiName>-->
-                            <!--<queueManager>{{qcf.queueManager}}</queueManager>-->
-                            <!--<host>{{qcf.host}}</host>-->
-                            <!--<port>{{qcf.port}}</port>-->
-                            <!--<channel>{{qcf.channel}}</channel>-->
-                            <!--<transportType>CLIENT</transportType>-->
-                            <!--<qcfUsername>{{qcf.username}}</qcfUsername>-->
-                            <!--<qcfPassword>{{qcf.password}}</qcfPassword>-->
-                            <!--<className>com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl</className>-->
+                        <!--name="QCF">-->
+                        <!--<jndiName>java:/jms/VZUB/QCF</jndiName>-->
+                        <!--<queueManager>{{qcf.queueManager}}</queueManager>-->
+                        <!--<host>{{qcf.host}}</host>-->
+                        <!--<port>{{qcf.port}}</port>-->
+                        <!--<channel>{{qcf.channel}}</channel>-->
+                        <!--<transportType>CLIENT</transportType>-->
+                        <!--<qcfUsername>{{qcf.username}}</qcfUsername>-->
+                        <!--<qcfPassword>{{qcf.password}}</qcfPassword>-->
+                        <!--<className>com.ibm.mq.connector.outbound.ManagedConnectionFactoryImpl</className>-->
                         <!--</duo.JbossWmqQueueConnectionFactorySpec>-->
 
                         <!-- Queues -->
                         <!--<duo.JbossWmqQueueSpec name="{{queue.vzubInputQueue}}">-->
-                            <!--<jndiName>java:/jms/XAB/inputQueue</jndiName>-->
-                            <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
-                            <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
+                        <!--<jndiName>java:/jms/XAB/inputQueue</jndiName>-->
+                        <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
+                        <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
                         <!--</duo.JbossWmqQueueSpec>-->
                         <!--<duo.JbossWmqQueueSpec name="{{queue.vzubOutputQueue}}">-->
-                            <!--<jndiName>java:/jms/XAB/outputQueue</jndiName>-->
-                            <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
-                            <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
+                        <!--<jndiName>java:/jms/XAB/outputQueue</jndiName>-->
+                        <!--<baseQueueName>{{queue.xabInputQueue}}</baseQueueName>-->
+                        <!--<baseQueueManagerName>{{qcf.queueManager}}</baseQueueManagerName>-->
                         <!--</duo.JbossWmqQueueSpec>-->
 
                         <!--<duo.JbossSystemPropertySpec name="OMGEVING">-->
-                            <!--<systemPropertyValue>{{OMGEVING}}</systemPropertyValue>-->
+                        <!--<systemPropertyValue>{{OMGEVING}}</systemPropertyValue>-->
                         <!--</duo.JbossSystemPropertySpec>-->
 
                         <duo.JbossSystemPropertySpec name="sftp.user">
@@ -141,31 +132,32 @@
 
             <!-- liquibase -->
             <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-dependency-plugin</artifactId>-->
-                <!--<version>2.8</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>unpack</id>-->
-                        <!--<phase>process-resources</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>unpack</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<artifactItems>-->
-                                <!--<artifactItem>-->
-                                    <!--<groupId>nl.ocwduo.vzub</groupId>-->
-                                    <!--<artifactId>liquibase</artifactId>-->
-                                    <!--<type>test-jar</type>-->
-                                    <!--<overWrite>false</overWrite>-->
-                                    <!--<outputDirectory>src/generated</outputDirectory>-->
-                                    <!--<includes>**/*changelog*</includes>-->
-                                <!--</artifactItem>-->
-                            <!--</artifactItems>-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-dependency-plugin</artifactId>-->
+            <!--<version>2.8</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>unpack</id>-->
+            <!--<phase>process-resources</phase>-->
+            <!--<goals>-->
+            <!--<goal>unpack</goal>-->
+            <!--</goals>-->
+            <!--<configuration>-->
+            <!--<artifactItems>-->
+            <!--<artifactItem>-->
+            <!--<groupId>nl.ocwduo.vzub</groupId>-->
+            <!--<artifactId>liquibase</artifactId>-->
+            <!--<type>test-jar</type>-->
+            <!--<overWrite>false</overWrite>-->
+            <!--<outputDirectory>src/generated</outputDirectory>-->
+            <!--<includes>**/*changelog*</includes>-->
+            <!--</artifactItem>-->
+            <!--</artifactItems>-->
+            <!--</configuration>-->
+            <!--</execution>-->
+            <!--</executions>-->
             <!--</plugin>-->
         </plugins>
     </build>
+
 </project>

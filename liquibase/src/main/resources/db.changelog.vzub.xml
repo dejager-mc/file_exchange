@@ -200,7 +200,7 @@
     <changeSet author="in434jag" id="1458554230-4">
         <addForeignKeyConstraint baseColumnNames="ORGANISATIE_ORGANISATIE_ID" baseTableName="FILE_TYPE"
                                  constraintName="index_organisatie_naam_id" deferrable="false" initiallyDeferred="false"
-                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="primaryKeyName"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ORGANISATIE_ID"
                                  referencedTableName="ORGANISATIE"/>
     </changeSet>
 

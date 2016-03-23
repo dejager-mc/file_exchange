@@ -1,0 +1,7 @@
+<jboss-deployment-structure>
+    <deployment>
+        <dependencies>
+            <module name="nl.ocwduo.logx" />
+        </dependencies>
+    </deployment>
+</jboss-deployment-structure>
